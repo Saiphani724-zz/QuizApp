@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Home from './Components/Welcome/Welcome';
+import Dashboard from './Components/StudentDashboard/Dashboard';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Route, Switch } from 'react-router-dom';
+
+const notdefined  = ()=> { return (
+	<div>
+
+	</div>
+) }
+class App extends Component {
+	render = () => {
+		return (
+			<main>
+				<Switch>
+				<Route path='/' component={Home} exact/>
+				<Route path='/dashboard' component={Dashboard} />
+				<Route component = {notdefined} />
+				</Switch>
+			</main>
+		);
+	}
+
 }
+
 
 export default App;
