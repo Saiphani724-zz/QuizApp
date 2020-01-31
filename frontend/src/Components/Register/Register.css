@@ -1,0 +1,10 @@
+.indentButton {
+	margin-left: 280px;
+	margin-top: 20px;
+}
+
+.indentErrorMsg {
+	margin-left: 480px;
+	color: red;
+	font-weight: bold;
+}
