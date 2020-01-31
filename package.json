@@ -1,0 +1,29 @@
+{
+  "name": "quizapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"  "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saiphani724/QuizApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Saiphani724/QuizApp/issues"
+  },
+  "homepage": "https://github.com/Saiphani724/QuizApp#readme",
+  "dependencies": {
+    "concurrently": "^5.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
+}
