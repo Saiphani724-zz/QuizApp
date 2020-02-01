@@ -11,7 +11,7 @@ class App extends Component {
 
 	state = {
 		isLoggedin: false,
-		ifSignupPage: false,
+		ifSignupPage:false,
 	}
 
 	onRegisterhandler = () => {
@@ -38,7 +38,7 @@ class App extends Component {
 											<div>
 												<Signin />
 												<h5 class="indent" onClick={this.onRegisterhandler}>Don't have Account ?  <br></br>
-														<a href="/#">Sign Up</a>
+														<button class="btn-md btn btn-primary">Sign Up</button>
 												</h5>
 											</div>
 									}

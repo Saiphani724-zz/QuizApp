@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import cookie from 'react-cookies';
 import './Dashboard.css';
+// import Testing from '../Testing/Testing';
 import SideNav, {
 	// Toggle, Nav,
 	NavItem, NavIcon, NavText
 } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { withRouter } from 'react-router-dom'
-
 class Dashboard extends Component {
 
 	state = {
@@ -31,7 +31,7 @@ class Dashboard extends Component {
 					<SideNav.Toggle />
 					<SideNav.Nav>
 
-						<NavItem eventKey="home" onClick={() => { history.push('/') }}>
+						<NavItem eventKey="home" onClick={() => { history.push('/dashboard') }}>
 							<NavIcon >
 								<i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
 							</NavIcon>
@@ -40,33 +40,43 @@ class Dashboard extends Component {
             				</NavText>
 						</NavItem>
 
-						<NavItem eventKey="charts">
+						<NavItem eventKey="devices">
 							<NavIcon>
-								<i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+							<i className="fa fa-fw fa-cogs" aria-hidden="true"></i>
 							</NavIcon>
 							<NavText>
 								Settings
             				</NavText>
 							<NavItem eventKey="charts/linechart">
 								<NavText>
-									Line Chart
+									Profile Settings
                 				</NavText>
 							</NavItem>
 							<NavItem eventKey="charts/barchart">
 								<NavText>
-									Bar Chart
+									Change Password
                 				</NavText>
 							</NavItem>
 						</NavItem>
 
 						<NavItem>
 							<NavIcon>
-								<i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+							<i className="fa fa-comments" aria-hidden="true"></i>
 							</NavIcon>
 							<NavText>
 								Comments
 							</NavText>
 						</NavItem>
+
+						<NavItem onClick={() => {  cookie.remove('username',{ path : '/' }); history.push('/') }}>
+							<NavIcon >
+							<i class="fa fa-window-close" aria-hidden="true"></i>
+							</NavIcon>
+							<NavText>
+								Logout
+							</NavText>
+						</NavItem>
+
 					</SideNav.Nav>
 				</SideNav>
 
@@ -96,9 +106,12 @@ class Dashboard extends Component {
 									Welcome, {this.state.username}
 								</h1>
 							</div>
+							
 						</div>
 						:
-						null
+						<h1>
+							Login Cheyy ra lavada
+						</h1>
 				}
 
 			</div>

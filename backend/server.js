@@ -12,14 +12,6 @@ dbName = 'QuizAppDB'
 
 app.use(cors());
 
-app.get('/api', (req, res) => {
-	console.log(req);
-	const users = [
-		{ username: 'Sai', password: '1919' },
-		{ username: 'sachmo', password: 'sachipo' },
-	]
-	res.json(users);
-})
 
 app.get('/login', function (req, res) {
 	let uname = (req.query.username);
@@ -53,6 +45,41 @@ app.get('/login', function (req, res) {
 						res.send({ "userFound": false })
 				})
 		});
+})
+
+app.get('/register', function (req, res) {
+	userData = req.query
+	userData.username = userData.username.toLowerCase()
+	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+		if (err) {
+			console.log('Unable to connect to db');
+			return;
+		}
+		console.log('Connected correctly');
+		const db = client.db(dbName);
+
+		db.collection('users').findOne(
+			{ 'username': userData.username }
+			, (err, user) => {
+				if (err) {
+					console.log("Error is", err);
+					return;
+				}
+				if (user === null) {
+					db.collection('users').insertOne(userData)
+					console.log("Inserted");
+
+					res.send({ isRegisterSuccess: true })
+				}
+				else {
+					console.log("Not Inserted");
+					res.send({ isRegisterSuccess: false })
+				}
+			})
+
+
+	})
+
 })
 
 app.listen(port, () => {

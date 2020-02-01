@@ -8,3 +8,14 @@
 	color: red;
 	font-weight: bold;
 }
+
+.centrify{
+	margin-top: 20px;
+	margin-left: -650px;
+	align-content: center;
+}
+
+.centrifyButton{
+	margin-top: 20px;
+	align-content: center;
+}
