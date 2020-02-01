@@ -8,7 +8,8 @@
     "start": "node server.js",
     "server": "nodemon backend\\server.js",
     "frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\"  "
+	"dev": "concurrently \"npm run server\" \"npm run frontend\"  ",
+	"update":"git pull https://github.com/Saiphani724/QuizApp &&  mongod --dbpath=\"backend\\data\" "
   },
   "repository": {
     "type": "git",
