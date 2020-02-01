@@ -68,6 +68,7 @@ class Register extends Component {
 		const Button = () => (
 			<button
 				className="btn-md btn btn-primary"
+				id="registerButton"
 				value="Register"
 				onClick={
 					(e) => {
@@ -134,12 +135,12 @@ class Register extends Component {
 					</div>
 
 				</form>
-				<div className="centrify">
+				<div className="text-center centrify">
 					<Button />
 				</div>
-				<div className="centrify">
+				<div className="text-center centrify">
 					<p>Already have an account ?</p>
-					<button className="btn-md btn btn-primary" onClick={this.goToHomePage} >
+					<button id="loginButton" className="btn-md btn btn-primary" onClick={this.goToHomePage} >
 						{/* className="btn-lg btn btn-primary indentButton" */}
 						Log In
 					</button>

@@ -56,7 +56,8 @@ class Signin extends Component {
 	render() {
 		const Button = withRouter(({ history }) => (
 			<button
-				className="btn-lg btn btn-dark indent"
+				id="signinButton"
+				className="btn-lg btn btn-dark indent "
 				type='submit'
 				value="Sign In"
 				onClick={() => { this.handleSignin(history) }}
@@ -66,7 +67,7 @@ class Signin extends Component {
 		))
 
 		return (
-			<div>
+			<div id="signinComponent">
 				<form>
 					<div class="form-group row">
 						<label for="username" class="col-sm-2 col-form-label">Username</label>
@@ -87,7 +88,6 @@ class Signin extends Component {
 						<p class="indentErrorMsg">User doesn't exist or Wrong Password</p>
 						: null
 				}
-
 				<div class="form-group row">
 					<div class="col-sm-6 offset-sm-2">
 						<Button />

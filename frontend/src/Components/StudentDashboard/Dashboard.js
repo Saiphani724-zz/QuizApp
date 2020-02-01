@@ -42,7 +42,7 @@ class Dashboard extends Component {
 
 						<NavItem eventKey="devices">
 							<NavIcon>
-							<i className="fa fa-fw fa-cogs" aria-hidden="true"></i>
+								<i className="fa fa-fw fa-cogs" aria-hidden="true"></i>
 							</NavIcon>
 							<NavText>
 								Settings
@@ -61,16 +61,16 @@ class Dashboard extends Component {
 
 						<NavItem>
 							<NavIcon>
-							<i className="fa fa-comments" aria-hidden="true"></i>
+								<i className="fa fa-comments" aria-hidden="true"></i>
 							</NavIcon>
 							<NavText>
 								Comments
 							</NavText>
 						</NavItem>
 
-						<NavItem onClick={() => {  cookie.remove('username',{ path : '/' }); history.push('/') }}>
+						<NavItem onClick={() => { cookie.remove('username', { path: '/' }); history.push('/') }}>
 							<NavIcon >
-							<i class="fa fa-window-close" aria-hidden="true"></i>
+								<i class="fa fa-window-close" aria-hidden="true"></i>
 							</NavIcon>
 							<NavText>
 								Logout
@@ -101,12 +101,14 @@ class Dashboard extends Component {
 							<div>
 								<SideNavBar />
 							</div>
-							<div>
-								<h1 className="centrify">
-									Welcome, {this.state.username}
+							<div >
+								<h1 class="text-center">
+									<i class="fad fa-h1">
+										Welcome, {this.state.username}
+									</i>
 								</h1>
 							</div>
-							
+
 						</div>
 						:
 						<h1>

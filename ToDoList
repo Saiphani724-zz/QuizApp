@@ -1,16 +1,9 @@
 register
-	Back to Login Button
-	html to react state -> node 
-	node [verification]
-		1. Succuess
-			 change Userdb as planned 
-		2. 	Fail - error
-	corresponding routing
+	Front end Validation
 
 
 Student Dashboard
-Logout
-Change Home route
+
 
 Add Quiz Db 
 Quizes To Take

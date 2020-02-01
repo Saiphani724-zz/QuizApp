@@ -11,7 +11,7 @@ class App extends Component {
 
 	state = {
 		isLoggedin: false,
-		ifSignupPage:false,
+		ifSignupPage: false,
 	}
 
 	onRegisterhandler = () => {
@@ -24,28 +24,26 @@ class App extends Component {
 
 	render = () => {
 		return (
-			<div>
-				<div className="App">
-					{
-						this.state.isLoggedin ?
-							null :
-							<div>
-								<HomePage />
-								<div className="App">
-									{
-										this.state.ifSignupPage ?
-											<Register /> :
-											<div>
-												<Signin />
-												<h5 class="indent" onClick={this.onRegisterhandler}>Don't have Account ?  <br></br>
-														<button class="btn-md btn btn-primary">Sign Up</button>
-												</h5>
-											</div>
-									}
-								</div>
+			<div className="App pagemargin">
+				{
+					this.state.isLoggedin ?
+						null :
+						<div>
+							<HomePage />
+							<div className="App">
+								{
+									this.state.ifSignupPage ?
+										<Register /> :
+										<div>
+											<Signin />
+											<h5 class="indent" onClick={this.onRegisterhandler}>Don't have Account ?  <br></br>
+												<button id="signupButton" class="btn-md btn btn-primary indent10pDown">Sign Up</button>
+											</h5>
+										</div>
+								}
 							</div>
-					}
-				</div>
+						</div>
+				}
 			</div>
 		);
 	}

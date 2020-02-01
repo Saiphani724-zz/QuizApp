@@ -5,3 +5,11 @@
 .link {
 	color: blue;
 }
+
+.pagemargin{
+	margin-left: 50px;
+}
+
+.indent10pDown {
+	margin-top: 10px;
+}

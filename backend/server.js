@@ -27,7 +27,6 @@ app.get('/login', function (req, res) {
 			db.collection('users').findOne(
 				{
 					'username': uname.toLowerCase(),
-					'password': password
 				}
 				, (err, user) => {
 					if (err) {
@@ -35,9 +34,9 @@ app.get('/login', function (req, res) {
 						return;
 					}
 					// console.log(user);
-					if (user === null);
-					else
-						userFound = true;
+					if(user === null);
+					else if (user.personalInfo.password === password)
+						userFound = true;					
 					// console.log(userFound);
 					if (userFound)
 						res.send({ "userFound": true })
@@ -48,8 +47,21 @@ app.get('/login', function (req, res) {
 })
 
 app.get('/register', function (req, res) {
-	userData = req.query
-	userData.username = userData.username.toLowerCase()
+	reqBody = req.query
+	reqBody.username = reqBody.username.toLowerCase()
+
+	userData = {
+		username: reqBody.username,
+		personalInfo: {
+			password: reqBody.password,
+			email: reqBody.email,
+			mobile: reqBody.mobile,
+			rollNo: reqBody.rollNo
+		},
+		QuizInfo: {}
+	}
+
+
 	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
 		if (err) {
 			console.log('Unable to connect to db');
@@ -76,8 +88,6 @@ app.get('/register', function (req, res) {
 					res.send({ isRegisterSuccess: false })
 				}
 			})
-
-
 	})
 
 })
