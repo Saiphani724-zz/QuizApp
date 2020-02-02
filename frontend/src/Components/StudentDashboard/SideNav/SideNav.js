@@ -24,7 +24,7 @@ class SideNavComponent extends Component {
 		const SideNavBar = withRouter(({ history }) => (
 
 			<div>
-				<SideNav
+				<SideNav id="sidenav"
 					onSelect={(selected) => {
 						// Add your code here
 					}}

@@ -34,9 +34,9 @@ app.get('/login', function (req, res) {
 						return;
 					}
 					// console.log(user);
-					if(user === null);
+					if (user === null);
 					else if (user.personalInfo.password === password)
-						userFound = true;					
+						userFound = true;
 					// console.log(userFound);
 					if (userFound)
 						res.send({ "userFound": true })
@@ -91,6 +91,49 @@ app.get('/register', function (req, res) {
 	})
 
 })
+
+
+app.get('/getQuizes', function (req, res) {
+	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+		if (err)
+			console.log(err);
+		else {
+			const db = client.db(dbName);
+			var myCursor = db.collection('quizes').find(
+				{prvQuiz : req.query.prvQuiz == 'true'}
+				);
+			let arr = [];
+			let i = 0;
+			myCursor.forEach(function (data) {
+				data.flag = i;
+				i = (i + 1) % 2;
+				arr.push(data);
+			}, function () {
+				// console.log(arr);
+				res.send(arr);
+			});
+		}
+	});
+})
+
+app.get('/getQuiz', function (req, res) {
+	console.log(req.query.quizCode);
+	
+	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+		if (err)
+			console.log(err);
+		else {
+			const db = client.db(dbName);
+			db.collection('quizes').findOne(
+				{quizCode : req.query.quizCode },
+				(err,data) =>{
+					res.send(data);
+				}
+			);
+		}
+	});
+})
+
 
 app.listen(port, () => {
 	console.log(`Server started on port ${port}`);

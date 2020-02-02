@@ -1,0 +1,24 @@
+#pageMargin{
+	margin-top: 3%;
+}
+
+#header{
+	margin-top: -150px;
+	margin-left: 0%;
+	/* margin-bottom: 12%; */
+}
+
+#Timer{
+	margin-left: 15%;
+}
+
+#title{
+	text-align: center;
+	margin-bottom: 50px;
+	margin-left: 40%;
+	margin-right: 15%;
+}
+
+#EndTestButton{
+	margin-top: 20px;
+}

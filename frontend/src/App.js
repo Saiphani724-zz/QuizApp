@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
 import Home from './Components/Welcome/Welcome';
 import Dashboard from './Components/StudentDashboard/Dashboard';
+import TestArena from './Components/TestArena/TestArena';
+import ViewResult from './Components/ViewResult/ViewResult';
 
 import { Route, Switch } from 'react-router-dom';
 
-const notdefined  = ()=> { return (
-	<div>
-		<h1>Page Not Found</h1>
-		<h2>Error 404 (+ 16 specially for you)</h2>
-	</div>
-) }
+const notdefined = () => {
+	return (
+		<div className="jumbotron text-center">
+			<h1 >Page Not Found</h1>
+			<h2>Error 404 (+ 16 specially for you with <i class="far fa-heart"></i>)</h2>
+		</div>
+	)
+}
 class App extends Component {
 	render = () => {
 		return (
 			<main>
 				<Switch>
-				<Route path='/' component={Home} exact/>
-				<Route path='/dashboard' component={Dashboard} />
-				<Route component = {notdefined} />
+					<Route path='/' component={Home} exact />
+					<Route path='/dashboard' component={Dashboard} />
+					<Route path='/viewResult' component={ViewResult} />
+					<Route path='/testArena' component={TestArena} />
+					<Route component={notdefined} />
 				</Switch>
 			</main>
 		);

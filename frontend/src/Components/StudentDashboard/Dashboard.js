@@ -29,20 +29,21 @@ class Dashboard extends Component {
 						<div>
 							<div id="dashboardPage">
 								<h1 class="text-center">
-									<i class="fad fa-h1">
+									<i class="fad fa-h1" id="welcomeMsg">
 										Welcome, {this.state.username}
 									</i>
 								</h1>
 								
 								<AvaiableQuizes />
+								<br></br>
 								<PreviousQuizes />
 								<SideNavBar />
 							</div>
 
 						</div>
 						:
-						<h1>
-							Login Cheyy ra lavada
+						<h1 className="jumbotron text-center">
+							Login Cheyy ra <i class="far fa-heart"></i>da
 						</h1>
 				}
 

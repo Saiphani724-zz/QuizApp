@@ -11,7 +11,6 @@ class HomePage extends Component
 					<h1 class="h0">
 					Quiz App
 					</h1>
-					{/* <Signin /> */}
 				</div>
 			);
 	}

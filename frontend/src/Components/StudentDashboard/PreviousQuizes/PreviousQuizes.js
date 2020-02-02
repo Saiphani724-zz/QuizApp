@@ -1,39 +1,35 @@
 import React,{Component} from 'react';
 import './PreviousQuizes.css';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import Quiz from '../Quiz/Quiz';
+
 
 class PreviousQuizes extends Component {
+	constructor(props) {
+		super(props);
+		// Don't call this.setState() here!
+		this.state = {};
+		fetch(`getQuizes?prvQuiz=${true}`, {
+			method: 'GET',
+		}).then(res => res.json())
+			.then(data => this.setState({ quizes: data }))
+	}
+
+
+
 	render() {
 		return (
-			<div id="avaiableQuizesPage">
+			<div id="previousQuizesPage">
 				<Card>
 					<Card.Header>Previous Quizes</Card.Header>
 				</Card>
-				<Card bg="dark" text="white">
-					<Card.Body>
-						<Card.Title>Software Engineering<Button id="takeTestButton" class="text-center" variant="primary">View Result</Button></Card.Title>
-						<Card.Text>
-							<b>Quiz-Topics	</b><span>:			Testing</span>
-							<br></br>
-							<b>Date	</b><span>:			21-Jan-20</span>
-							<br></br>
-							<b>Score	</b><span>:			9/10</span>
-						</Card.Text>
-					</Card.Body>
-				</Card>
-				<Card bg="warning">
-					<Card.Body>
-						<Card.Title>Compiler Design<Button id="takeTestButton" variant="primary">View Result</Button></Card.Title>
-						<Card.Text>
-							<b>Quiz-Topics	</b><span>:			RDP</span>
-							<br></br>
-							<b>Date	</b><span>:			19-Jan-20</span>
-							<br></br>
-							<b>Score	</b><span>:			8/10</span>
-						</Card.Text>
-					</Card.Body>
-				</Card>
-
+				{
+					this.state.quizes == null ?
+						<h1>Component loading wait</h1> :
+						this.state.quizes.map(quiz => {
+							return <Quiz title={quiz.course} id={quiz.quizCode} bg="warning" prvQuiz={true} flag={quiz.flag} topics={quiz.topic} date={quiz.date} />
+						})
+				}
 			</div>
 		);
 	}

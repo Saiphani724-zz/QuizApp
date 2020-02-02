@@ -8,8 +8,8 @@
     "start": "node server.js",
     "server": "nodemon backend\\server.js",
     "frontend": "npm start --prefix frontend",
-	"dev": "concurrently \"npm run server\" \"npm run frontend\"  ",
-	"update":"git pull https://github.com/Saiphani724/QuizApp &&  mongod --dbpath=\"backend\\data\" "
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"  ",
+    "update": "git pull https://github.com/Saiphani724/QuizApp &&  mongod --dbpath=\"backend\\data\" "
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,10 @@
   "dependencies": {
     "concurrently": "^5.0.2",
     "cors": "^2.8.5",
+    "date-fns": "^2.9.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.2",
+    "rc-progress": "^2.5.2",
     "react-cookies": "^0.1.1"
   }
 }
