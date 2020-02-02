@@ -1,6 +1,5 @@
 import 'rc-progress/assets/index.css';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Circle } from 'rc-progress';
 import './Timer.css';
 
@@ -19,12 +18,6 @@ class Timer extends Component {
 		}
 	}
 
-	// updateTime = ()=>{
-		
-		
-	// 	// $leftText.firstChild.nodeValue = Math.floor(left / 60) + ":" + Math.floor(left % 60);
-	// 	// $progress.style.width = (left * 100 / duration) + "%";
-	// }​
 	updateTime = ()=>{
 		
 		var now = new Date().getTime();
@@ -32,11 +25,10 @@ class Timer extends Component {
 		nodeValue = Math.max(0,Math.floor(left / 60)) + ":" + Math.max(0,Math.floor(left % 60));
 		var width = (left * 100 / (duration * 60));	
 		this.setState({nodeValue : nodeValue, width : width})
-		console.log(left);
 		
 		if(left < 0 && left > -5){
 			window.location.href = window.location.origin + '/dashboard';
-			setTimeout(alert('Your has been submitted'),5000);
+			setTimeout(alert('Your Answers have been submitted'),5000);
 		}
 	}
 

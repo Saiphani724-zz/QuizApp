@@ -69,27 +69,27 @@ class Signin extends Component {
 		return (
 			<div id="signinComponent">
 				<form>
-					<div class="form-group row">
-						<label for="username" class="col-sm-2 col-form-label">Username</label>
-						<div class="col-sm-6">
-							<input type="username" class="form-control" id="username" placeholder="Enter your Username" onChange={this.onUsernameChanged} />
+					<div className="form-group row">
+						<label htmlFor="username" className="col-sm-2 col-form-label">Username</label>
+						<div className="col-sm-6">
+							<input type="username" className="form-control" id="username" placeholder="Enter your Username" onChange={this.onUsernameChanged} />
 						</div>
 
 					</div>
-					<div class="form-group row">
-						<label for="password" class="col-sm-2 col-form-label">Password</label>
-						<div class="col-sm-6">
-							<input type="password" class="form-control" id="password" placeholder="Enter your Password" onChange={this.onPasswordChanged} />
+					<div className="form-group row">
+						<label htmlFor="password" className="col-sm-2 col-form-label">Password</label>
+						<div className="col-sm-6">
+							<input type="password" className="form-control" id="password" placeholder="Enter your Password" onChange={this.onPasswordChanged} />
 						</div>
 					</div>
 				</form>
 				{
 					this.state.userFound === false ?
-						<p class="indentErrorMsg">User doesn't exist or Wrong Password</p>
+						<p className="indentErrorMsg">User doesn't exist or Wrong Password</p>
 						: null
 				}
-				<div class="form-group row">
-					<div class="col-sm-6 offset-sm-2">
+				<div className="form-group row">
+					<div className="col-sm-6 offset-sm-2">
 						<Button />
 					</div>
 				</div>

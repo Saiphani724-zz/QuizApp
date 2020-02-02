@@ -36,8 +36,8 @@ class App extends Component {
 										<Register /> :
 										<div>
 											<Signin />
-											<h5 class="indent" onClick={this.onRegisterhandler}>Don't have Account ?  <br></br>
-												<button id="signupButton" class="btn-md btn btn-primary indent10pDown">Sign Up</button>
+											<h5 className="indent" onClick={this.onRegisterhandler}>Don't have Account ?  <br></br>
+												<button id="signupButton" className="btn-md btn btn-primary indent10pDown">Sign Up</button>
 											</h5>
 										</div>
 								}

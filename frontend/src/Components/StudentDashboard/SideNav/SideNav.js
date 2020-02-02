@@ -71,7 +71,7 @@ class SideNavComponent extends Component {
 
 						<NavItem onClick={() => { cookie.remove('username', { path: '/' }); history.push('/') }}>
 							<NavIcon >
-								<i class="fa fa-window-close" aria-hidden="true"></i>
+								<i className="fa fa-window-close" aria-hidden="true"></i>
 							</NavIcon>
 							<NavText>
 								Logout

@@ -28,8 +28,8 @@ class Dashboard extends Component {
 					this.state.username != null ?
 						<div>
 							<div id="dashboardPage">
-								<h1 class="text-center">
-									<i class="fad fa-h1" id="welcomeMsg">
+								<h1 className="text-center">
+									<i className="fad fa-h1" id="welcomeMsg">
 										Welcome, {this.state.username}
 									</i>
 								</h1>
@@ -43,7 +43,7 @@ class Dashboard extends Component {
 						</div>
 						:
 						<h1 className="jumbotron text-center">
-							Login Cheyy ra <i class="far fa-heart"></i>da
+							Login Cheyy ra <i className="far fa-heart"></i>da
 						</h1>
 				}
 
