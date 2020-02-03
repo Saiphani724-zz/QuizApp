@@ -29,10 +29,10 @@ class SideNavComponent extends Component {
 						// Add your code here
 					}}
 				>
-					<SideNav.Toggle />
+					<SideNav.Toggle id="navToggleButton" />
 					<SideNav.Nav>
 
-						<NavItem eventKey="home" onClick={() => { history.push('/dashboard') }}>
+						<NavItem id="navToDashboard"eventKey="home" onClick={() => { history.push('/dashboard') }}>
 							<NavIcon >
 								<i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
 							</NavIcon>
@@ -41,7 +41,7 @@ class SideNavComponent extends Component {
             				</NavText>
 						</NavItem>
 
-						<NavItem eventKey="devices">
+						<NavItem id="navToSettings" eventKey="">
 							<NavIcon>
 								<i className="fa fa-fw fa-cogs" aria-hidden="true"></i>
 							</NavIcon>
@@ -60,7 +60,7 @@ class SideNavComponent extends Component {
 							</NavItem>
 						</NavItem>
 
-						<NavItem>
+						<NavItem id="navToComments" >
 							<NavIcon>
 								<i className="fa fa-comments" aria-hidden="true"></i>
 							</NavIcon>
@@ -69,7 +69,7 @@ class SideNavComponent extends Component {
 							</NavText>
 						</NavItem>
 
-						<NavItem onClick={() => { cookie.remove('username', { path: '/' }); history.push('/') }}>
+						<NavItem id="navToLogout" onClick={() => { cookie.remove('username', { path: '/' }); history.push('/') }}>
 							<NavIcon >
 								<i className="fa fa-window-close" aria-hidden="true"></i>
 							</NavIcon>

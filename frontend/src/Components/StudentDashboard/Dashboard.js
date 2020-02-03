@@ -10,11 +10,9 @@ import AvaiableQuizes from './AvailableQuizes/AvailableQuizes';
 import PreviousQuizes from './PreviousQuizes/PreviousQuizes';
 
 class Dashboard extends Component {
-
 	state = {
 		username: null
 	}
-
 	componentWillMount() {
 		this.setState({ username: cookie.load('username') })
 	}

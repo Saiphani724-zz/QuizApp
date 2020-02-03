@@ -63,33 +63,35 @@ class Signin extends Component {
 				value="Sign In"
 				onClick={() => { this.handleSignin(history) }}
 			>
-				Sign In
+				Sign In 
 			</button>
 		))
 
 		return (
-			<div id="signinComponent">
-				
-				<form>
-					<div id="usernameDiv" className="form-group row ">
-						<label htmlFor="username" className="col-sm-6 col-form-label">Username</label>
-						<input type="username" className="form-control" id="username" placeholder="Enter your Username" onChange={this.onUsernameChanged} />
-					</div>
-					<div className="form-group row ">
-						<label htmlFor="password" className="col-sm-6 col-form-label">Password</label>
-						<input type="password" className="form-control" id="password" placeholder="Enter your Password" onChange={this.onPasswordChanged} />
-					</div>
-				</form>
-				{
-					this.state.userFound === false ?
-						<p className="indentErrorMsg">User doesn't exist or Wrong Password</p>
-						: null
-				}
-				<div className="form-group row">
-					<div id="signInButtton"className="col-sm-6 offset-sm-2">
+			<div id="siginOuter">
+				<Card id="signinCard">
+					
+					<form id="inputboxes">
+						<div  className="form-group row ">
+							<label htmlFor="username" className="col-form-label">Username</label>
+							<input type="username" className="form-control" id="username" placeholder="Enter your Username" onChange={this.onUsernameChanged} />
+						</div>
+						<div className="form-group row ">
+							<label htmlFor="password" className="col-form-label">Password</label>
+							<input type="password" className="form-control" id="password" placeholder="Enter your Password" onChange={this.onPasswordChanged} />
+						</div>
+					</form>
+					{
+						this.state.userFound === false ?
+							<p id="NoUserErrorMsg">User doesn't exist or Wrong Password</p>
+							: null
+					}
+					
+					<div id="signInButtton">
 						<Button />
 					</div>
-				</div>
+					
+				</Card>
 			</div>
 		);
 	}

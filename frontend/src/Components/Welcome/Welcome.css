@@ -1,15 +1,5 @@
-.indent {
+#signupDiv{
 	text-align: center;
-}
-
-.link {
-	color: blue;
-}
-
-.pagemargin{
-	margin-left: 50px;
-}
-
-.indent10pDown {
-	margin-top: 10px;
+	font-weight: bold;
+	margin-top: 40px;
 }

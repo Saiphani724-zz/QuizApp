@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Home from './Components/Welcome/Welcome';
+import Welcome from './Components/Welcome/Welcome';
 import Dashboard from './Components/StudentDashboard/Dashboard';
 import TestArena from './Components/TestArena/TestArena';
 import ViewResult from './Components/ViewResult/ViewResult';
@@ -19,7 +19,7 @@ class App extends Component {
 		return (
 			<main>
 				<Switch>
-					<Route path='/' component={Home} exact />
+					<Route path='/' component={Welcome} exact />
 					<Route path='/dashboard' component={Dashboard} />
 					<Route path='/viewResult' component={ViewResult} />
 					<Route path='/testArena' component={TestArena} />
