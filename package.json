@@ -9,7 +9,9 @@
     "server": "nodemon backend\\server.js",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\"  ",
-    "update": "git pull https://github.com/Saiphani724/QuizApp &&  mongod --dbpath=\"backend\\data\" "
+	"update": "git pull https://github.com/Saiphani724/QuizApp &&  mongod --dbpath=\"backend\\data\" ", 
+	"createdb": "node backend/createdb.js",
+	"blast": "concurrently \"npm run update\" \"npm run createdb\" "
   },
   "repository": {
     "type": "git",
