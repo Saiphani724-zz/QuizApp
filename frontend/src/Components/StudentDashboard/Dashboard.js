@@ -22,7 +22,6 @@ class Dashboard extends Component {
 	render() {
 
 		return (
-
 			<div>
 				{
 					this.state.username != null ?

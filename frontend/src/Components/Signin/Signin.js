@@ -7,7 +7,8 @@ import cookie from 'react-cookies'
 import {
 	withRouter,
 	// BrowserRouter
-} from 'react-router-dom'   
+} from 'react-router-dom'
+import { Card } from 'react-bootstrap'
 
 class Signin extends Component {
 
@@ -34,7 +35,7 @@ class Signin extends Component {
 			history.push('/dashboard')
 		}
 		else {
-			cookie.remove('username',{ path: '/' })
+			cookie.remove('username', { path: '/' })
 			console.log(this.state.userFound);
 		}
 	}
@@ -68,19 +69,15 @@ class Signin extends Component {
 
 		return (
 			<div id="signinComponent">
+				
 				<form>
-					<div className="form-group row">
-						<label htmlFor="username" className="col-sm-2 col-form-label">Username</label>
-						<div className="col-sm-6">
-							<input type="username" className="form-control" id="username" placeholder="Enter your Username" onChange={this.onUsernameChanged} />
-						</div>
-
+					<div id="usernameDiv" className="form-group row ">
+						<label htmlFor="username" className="col-sm-6 col-form-label">Username</label>
+						<input type="username" className="form-control" id="username" placeholder="Enter your Username" onChange={this.onUsernameChanged} />
 					</div>
-					<div className="form-group row">
-						<label htmlFor="password" className="col-sm-2 col-form-label">Password</label>
-						<div className="col-sm-6">
-							<input type="password" className="form-control" id="password" placeholder="Enter your Password" onChange={this.onPasswordChanged} />
-						</div>
+					<div className="form-group row ">
+						<label htmlFor="password" className="col-sm-6 col-form-label">Password</label>
+						<input type="password" className="form-control" id="password" placeholder="Enter your Password" onChange={this.onPasswordChanged} />
 					</div>
 				</form>
 				{
@@ -89,7 +86,7 @@ class Signin extends Component {
 						: null
 				}
 				<div className="form-group row">
-					<div className="col-sm-6 offset-sm-2">
+					<div id="signInButtton"className="col-sm-6 offset-sm-2">
 						<Button />
 					</div>
 				</div>

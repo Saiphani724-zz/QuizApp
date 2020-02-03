@@ -7,3 +7,20 @@
 .indent10pDown {
 	margin-top: 10px;
 }
+
+#signinCard{
+	width: 400px;
+	height: 300px;
+	align-items: center;
+	
+	margin-left: 20%;
+	margin-right: 40%;
+}
+
+#usernameDiv{
+	margin-top: 20px;
+}
+
+#signinButton{
+	float: right;
+}

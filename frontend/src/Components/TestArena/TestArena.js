@@ -26,9 +26,9 @@ class TestArena extends Component {
 		return (
 			<div id="pageMargin">
 				<div id="Timer">
+				<div id="header" >
 					<Timer />
 				</div>
-				<div id="header" >
 					<div id="title">
 						<h2>{this.state.course}</h2>
 						<h3>{this.state.topic}</h3>
@@ -36,7 +36,6 @@ class TestArena extends Component {
 							<button class="btn btn-lg btn-danger">End Test</button>
 						</div>
 					</div>
-
 				</div>
 
 				{

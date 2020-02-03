@@ -4,7 +4,7 @@ import { Circle } from 'rc-progress';
 import './Timer.css';
 
 const time = 1000;
-const duration = 0.1;
+const duration = 1;
 const beginTimestamp =  new Date().getTime();
 var nodeValue = 0;
 

@@ -4,7 +4,7 @@ import './Welcome.css';
 import HomePage from '../../Components/HomePage/HomePage';
 import Signin from '../../Components/Signin/Signin';
 import Register from '../../Components/Register/Register';
-
+import {Card} from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 
 class App extends Component {
@@ -35,7 +35,9 @@ class App extends Component {
 									this.state.ifSignupPage ?
 										<Register /> :
 										<div>
-											<Signin />
+											<Card id="signinCard" >
+													<Signin />
+											</Card>
 											<h5 className="indent" onClick={this.onRegisterhandler}>Don't have Account ?  <br></br>
 												<button id="signupButton" className="btn-md btn btn-primary indent10pDown">Sign Up</button>
 											</h5>
