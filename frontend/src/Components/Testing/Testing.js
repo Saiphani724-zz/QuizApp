@@ -8,7 +8,7 @@ class Testing extends Component
 	{
 			return (
 				<div>
-					
+
 				</div>
 			);
 	}
