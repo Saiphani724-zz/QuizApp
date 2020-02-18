@@ -1,6 +1,18 @@
 register
 	Front end Validation
 
+Settings page
+Comments Section
+
+Change DB structure 
+UserDB - 
+	Link Quiz Details to user - toAnswer / isAnswered / running(time stored in app state)
+	Add quiz, answered questions
+
+QuizDB - 
+	quizCode,
+	timer,
+	explanation for question
 
 
 
@@ -9,7 +21,9 @@ Student Dashboard
 		Submit
 		Timer
 	View Result
+	Ques, show/hide Result
 .
+
 .
 .
 .

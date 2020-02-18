@@ -33,7 +33,8 @@ class TestArena extends Component {
 						<h2>{this.state.course}</h2>
 						<h3>{this.state.topic}</h3>
 						<div id="EndTestButton">
-							<button class="btn btn-lg btn-danger">End Test</button>
+							<button onclick={()=>{window.location.href = window.location.origin + '/dashboard';}}
+							class="btn btn-lg btn-danger">End Test</button>
 						</div>
 					</div>
 				</div>

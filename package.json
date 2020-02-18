@@ -9,9 +9,9 @@
     "server": "nodemon backend\\server.js",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\"  ",
-	"update": "git pull https://github.com/Saiphani724/QuizApp &&  mongod --dbpath=\"backend\\data\" ", 
-	"createdb": "node backend/createdb.js",
-	"blast": "concurrently \"npm run update\" \"npm run createdb\" "
+    "update": "git pull https://github.com/Saiphani724/QuizApp &&  mongod --dbpath=\"backend\\data\" ",
+    "createdb": "node backend/createdb.js",
+    "blast": "concurrently \"npm run update\" \"npm run createdb\" "
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "cors": "^2.8.5",
     "date-fns": "^2.9.0",
     "express": "^4.17.1",
+    "jasmine": "^3.5.0",
     "nodemon": "^2.0.2",
     "rc-progress": "^2.5.2",
     "react-cookies": "^0.1.1"

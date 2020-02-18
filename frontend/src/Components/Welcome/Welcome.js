@@ -46,7 +46,7 @@ class App extends Component {
 											<div id="signupDiv">
 												<p>Don't have Account ?  <br></br>
 												</p>
-												<button onClick={this.onRegisterhandler}
+												<button id="toSignupPageButton" onClick={this.onRegisterhandler}
 												 className="btn-lg btn btn-primary">Sign Up for Quiz App</button>
 											</div>
 										</div>
