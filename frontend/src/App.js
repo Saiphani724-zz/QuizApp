@@ -8,7 +8,7 @@ import { Route, Switch } from 'react-router-dom';
 
 const notdefined = () => {
 	return (
-		<div className="jumbotron text-center">
+		<div id="420" className="jumbotron text-center">
 			<h1 >Page Not Found</h1>
 			<h2>Error 404 (+ 16 specially for you with <i className="far fa-heart"></i>)</h2>
 		</div>

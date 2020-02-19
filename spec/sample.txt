@@ -1,0 +1,14 @@
+var f1 = (x,y)=>{
+	return x + y;
+}
+
+describe("Player", function() {
+	it("is a simple spec in level3", function() {
+		console.log("Sum is true");
+		expect(f1(3,4)).toBe(7);
+	});
+	it("is a simple spec in level3", function() {
+		console.log("Sum is not correct");
+		expect(f1(4,1)).not.toBe(7);
+	});
+});

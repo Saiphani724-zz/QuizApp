@@ -1,3 +1,0 @@
-describe("MyJSUtilities", function() {
-	/* ... */
-   });
