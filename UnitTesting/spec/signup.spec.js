@@ -2,39 +2,73 @@
 
 var request = require("request");
 
-// var  checkLogin = (username, password)=>{
-// 	var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
-// 	request.get(base_url, function (error, response, body) {
-// 		console.log("\n\n\n" + JSON.parse(response.body)["userFound"] + "\n\n");
-// 		return JSON.parse(response.body)["userFound"]
-// 	});
-// }
 
+describe("Sign Up", function () {
+	describe("Testing", function () {
 
-describe("Hello World Server", function () {
-	describe("GET /", function () {
+		it("Register with existing user", function (done) {
+			var username = 'PSP123'
+			var mobile = "924646080"
+			var password = "1919"
+			var email = "saiphani7890@gmail.com"
+			var rollNo = "cb.en.u4cse17137"
+			var base_url = `http://localhost:5000/register?username=${username}&&password=${password}&&email=${email}&&rollNo=${rollNo}&&mobile=${mobile}`
 
-		it("returns status code 200", function (done) {
-			var password = 'sachmo'
-			var username = 'Sachipo'
-			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
 			console.log(base_url);
 
 			request.get(base_url, function (error, response, body) {
-				expect(JSON.parse(response.body)["userFound"]).toBe(true);
+				expect(JSON.parse(response.body)["isRegisterSuccess"]).toBe(true);
+				done();
+			});
+		});
+
+		it("Register with new user", function (done) {
+			var d = new Date();
+			var username = 'Saiphani724' + d.getTime();
+			var mobile = "924646080"
+			var password = "1919"
+			var email = "saiphani456@gmail.com"
+			var rollNo = "cb.en.u4cse17137"
+			var base_url = `http://localhost:5000/register?username=${username}&&password=${password}&&email=${email}&&rollNo=${rollNo}&&mobile=${mobile}`
+
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["isRegisterSuccess"]).toBe(true);
 				done();
 			});
 		});
 
 
-		it("returns status code 200", function (done) {
-			var username = 'Sachmo'
-			var password = 'Sachipo'
-			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
+		it("Register with existing user", function (done) {
+			var username = 'Saiphani724'
+			var mobile = "924646080"
+			var password = "1919"
+			var email = "saiphani123@gmail.com"
+			var rollNo = "cb.en.u4cse17137"
+			var base_url = `http://localhost:5000/register?username=${username}&&password=${password}&&email=${email}&&rollNo=${rollNo}&&mobile=${mobile}`
+
 			console.log(base_url);
 
 			request.get(base_url, function (error, response, body) {
-				expect(JSON.parse(response.body)["userFound"]).toBe(false);
+				expect(JSON.parse(response.body)["isRegisterSuccess"]).toBe(true);
+				done();
+			});
+		});
+
+		it("Register with new user", function (done) {
+			var d = new Date();
+			var username = 'Saiphani' + d.getTime();
+			var mobile = "924646080"
+			var password = "1919"
+			var email = "saiphani727@gmail.com"
+			var rollNo = "cb.en.u4cse17137"
+			var base_url = `http://localhost:5000/register?username=${username}&&password=${password}&&email=${email}&&rollNo=${rollNo}&&mobile=${mobile}`
+
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["isRegisterSuccess"]).toBe(true);
 				done();
 			});
 		});

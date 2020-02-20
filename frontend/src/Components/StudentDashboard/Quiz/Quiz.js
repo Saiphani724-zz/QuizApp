@@ -31,7 +31,7 @@ class Quiz extends Component {
 		return (
 			<Card bg={color} text={text}>
 				<Card.Body>
-					<Card.Title>{this.props.title}<Button id={this.props.id} onClick={this.handleButtonClick} className="indent50pRight" variant="primary">
+					<Card.Title>{this.props.title}<Button id={this.props.id} onClick={this.handleButtonClick} className="taketest indent50pRight" variant="primary">
 					{
 					this.props.prvQuiz ===false ?
 						"Take Test":"View Result"

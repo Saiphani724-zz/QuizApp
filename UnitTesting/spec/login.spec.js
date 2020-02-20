@@ -1,22 +1,36 @@
-// var app = require("../spec/jasmine_examples/jasmine_test1");
-
 var request = require("request");
 
-// var  checkLogin = (username, password)=>{
-// 	var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
-// 	request.get(base_url, function (error, response, body) {
-// 		console.log("\n\n\n" + JSON.parse(response.body)["userFound"] + "\n\n");
-// 		return JSON.parse(response.body)["userFound"]
-// 	});
-// }
 
+describe("Login", function () {
+	describe("Testing with", function () {
 
-describe("Hello World Server", function () {
-	describe("GET /", function () {
+		it("Correct user details1", function (done) {
+			var username = 'Saiphani724'
+			var password = '1919'
+			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
+			console.log(base_url);
 
-		it("returns status code 200", function (done) {
-			var password = 'sachmo'
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["userFound"]).toBe(true);
+				done();
+			});
+		});
+
+		it("Wrong user details1", function (done) {
+			var username = 'Saiphani724'
+			var password = '1234'
+			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["userFound"]).toBe(true);
+				done();
+			});
+		});
+
+		it("Correct user details2", function (done) {
 			var username = 'Sachipo'
+			var password = 'sachmo'
 			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
 			console.log(base_url);
 
@@ -27,14 +41,14 @@ describe("Hello World Server", function () {
 		});
 
 
-		it("returns status code 200", function (done) {
+		it("Wrong user details2", function (done) {
 			var username = 'Sachmo'
-			var password = 'Sachipo'
+			var password = 'sachipo'
 			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
 			console.log(base_url);
 
 			request.get(base_url, function (error, response, body) {
-				expect(JSON.parse(response.body)["userFound"]).toBe(false);
+				expect(JSON.parse(response.body)["userFound"]).toBe(true);
 				done();
 			});
 		});
