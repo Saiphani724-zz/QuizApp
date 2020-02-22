@@ -24,7 +24,7 @@ describe("Sign Up", function () {
 
 		it("Register with new user", function (done) {
 			var d = new Date();
-			var username = 'Saiphani724' + d.getTime();
+			var username = 'Saiphani1234' + d.getTime();
 			var mobile = "924646080"
 			var password = "1919"
 			var email = "saiphani456@gmail.com"

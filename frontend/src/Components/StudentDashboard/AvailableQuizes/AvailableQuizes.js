@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './AvailableQuizes.css';
 import { Card } from 'react-bootstrap';
 import Quiz from '../Quiz/Quiz';
-
+import cookie from 'react-cookies';
 
 class AvailableQuizes extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
-		fetch(`getQuizes?prvQuiz=${false}`, {
+		var username = cookie.load('username');
+		fetch(`getQuizes?prvQuiz=${false}&username=${username}`, {
 			method: 'GET',
 		}).then(res => res.json())
 			.then(data => this.setState({ quizes: data }))

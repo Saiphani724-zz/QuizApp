@@ -40,7 +40,7 @@ class Dashboard extends Component {
 						</div>
 						:
 						<h1 id="luvda" className="jumbotron text-center">
-							Login Cheyy ra <i className="far fa-heart"></i>da
+							<button onClick={()=>{window.location.href = window.location.origin + '/'}} class="btn btn-lg btn-primary">Please Login <i className="far fa-heart"></i></button>
 						</h1>
 				}
 

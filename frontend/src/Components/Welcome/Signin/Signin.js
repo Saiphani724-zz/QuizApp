@@ -58,7 +58,7 @@ class Signin extends Component {
 		const Button = withRouter(({ history }) => (
 			<button
 				id="signinButton"
-				className="btn-lg btn btn-dark indent "
+				className="btn-lg btn btn-success indent "
 				type='submit'
 				value="Sign In"
 				onClick={() => { this.handleSignin(history) }}

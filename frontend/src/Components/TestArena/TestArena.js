@@ -2,41 +2,78 @@ import React, { Component } from 'react';
 import './TestArena.css';
 import cookie from 'react-cookies';
 
-import Question from '../Question/Question';
-import Timer from '../Timer/Timer';
+import Question from './Question/Question';
+import Timer from './Timer/Timer';
 
 class TestArena extends Component {
+
+	state = { answers: {} }
+
+	onAnswer = (quesCode, ans) => {
+		var temp = this.state.answers;
+		temp[quesCode] = ans;
+		this.setState({ answers: temp });
+	}
+
+	submitQuiz = () => {
+		var marks = 0;
+		var questions = this.state.questions;
+		var answers = this.state.answers;
+		var correctAnss = {};
+		for (let i = 0; i < questions.length; i++) {
+			var ques = questions[i];
+			var quesCode = ques['questionCode'];
+			correctAnss[quesCode] = ques['correctAns'];
+			if (answers[quesCode] == ques['correctAns']) {
+				marks += 1;
+			}
+		}
+		var quizResult = JSON.stringify({
+			username: cookie.load('username', { path: '/' }),
+			QuizInfo: {
+				quizCode: cookie.load('quizCode', { path: '/' }),
+				correctAns: correctAnss,
+				answers: answers,
+				marks: marks,
+				prvQuiz: true
+			}
+		});
+		console.log(quizResult);
+
+
+		fetch(`submitQuiz?quizResult=${quizResult}`, {
+			method: 'GET',
+		}).then(res => res.json());
+
+		window.location.href = window.location.origin + '/dashboard';
+	}
+
 	constructor(props) {
 		super(props);
 
-		this.state = {}
-
 		var quizCode = cookie.load('quizCode', { path: '/' })
 
-		fetch(`getQuiz?quizCode=${quizCode}`, {
+		fetch(`getTestQuestions?quizCode=${quizCode}`, {
 			method: 'GET',
 		}).then(res => res.json())
 			.then(quiz => this.setState({ questions: quiz.questions, course: quiz.course, topic: quiz.topic }, function () {
-				console.log(this.state.questions);
+				// console.log(this.state.questions);
 			}))
-
 	}
 	render() {
-		console.log(this.state);
+		// console.log(this.state);
 		return (
 			<div id="pageMargin">
 				<div id="Timer">
-				<div id="header" >
-					<Timer />
-				</div>
+					<div id="header" >
+						<Timer submitQuiz={this.submitQuiz}/>
+					</div>
 					<div id="title">
 						<h2>{this.state.course}</h2>
 						<h3>{this.state.topic}</h3>
 						<div id="EndTestButton">
-							<button onClick={()=>{
-								window.location.href = window.location.origin + '/dashboard';
-							}}
-							class="btn btn-lg btn-danger">End Test</button>
+							<button onClick={this.submitQuiz}
+								class="btn btn-lg btn-danger">End Test</button>
 						</div>
 					</div>
 				</div>
@@ -44,7 +81,7 @@ class TestArena extends Component {
 				{
 					this.state.questions ?
 						this.state.questions.map(ques => {
-							return <Question question={ques} />
+							return <Question question={ques} onSelectAns={this.onAnswer} />
 						})
 						: null
 				}

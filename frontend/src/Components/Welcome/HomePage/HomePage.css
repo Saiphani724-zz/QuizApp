@@ -4,6 +4,7 @@
 	font-weight: normal;
 	src : local('SEGA LOGO FONT'),
 	url('SEGA.TTF') format('TTF');
+	
 }
 
 .bcc {
@@ -16,5 +17,5 @@
 	font-size: 60px;
 	margin-left: auto;
 	text-align : center;
-	color: #00d0cf;
+	color: #000000;
 }

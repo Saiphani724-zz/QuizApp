@@ -1,3 +1,9 @@
+Update quizInfo in DB
+Show user Customised quizes
+ON end test change is Available to False
+
+
+
 register
 	Front end Validation
 
@@ -38,3 +44,23 @@ adjust margins and for each page try full and half window display]
 
 Selective conducting of quizes
 JWT token authorisation
+
+
+// 	var reqQuizes = {}
+			// 	// req.query.prvQuiz
+			// 	db.collection('users').findOne(
+			// 		{
+			// 			'username': uname.toLowerCase(),
+			// 		}
+			// 		, (err, user) => {
+			// 			if (err) {
+			// 				console.log("Error is", err);
+			// 				return;
+			// 			}
+			// 			for(let i = 0;i < user.quizInfo.length;i++){
+			// 				var quiz = user.quizInfo[i];
+			// 				if(quiz.prvQuiz === req.query.prvQuiz){
+			// 					reqQuizes[quiz['quizCode']] = 1;
+			// 				}
+			// 			}
+			// 		})

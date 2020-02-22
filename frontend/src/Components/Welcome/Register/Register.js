@@ -32,7 +32,7 @@ class Register extends Component {
 
 
 	checkRegex = () => {
-		if (this.state.username === "Phani" || 1) {
+		if (this.state.username != "") {
 			return true
 		}
 		else {
@@ -67,7 +67,7 @@ class Register extends Component {
 
 		const Button = () => (
 			<button
-				className="btn-md btn btn-dark"
+				className="btn-md btn btn-success"
 				id="registerButton"
 				value="Register"
 				onClick={
@@ -134,7 +134,7 @@ class Register extends Component {
 				</div>
 				<div className="text-center registerButton">
 					<p>Already have an account ?</p>
-					<button id="loginBackButton" className="btn-md btn btn-primary" onClick={this.goToHomePage} >
+					<button id="loginBackButton" className="btn-md btn btn-dark" onClick={this.goToHomePage} >
 						{/* className="btn-lg btn btn-primary indentButton" */}
 						Log In
 					</button>

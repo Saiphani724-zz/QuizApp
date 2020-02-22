@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 const railOuterStyle = {
   position: "absolute",
   width: "100%",
-  height: 40,
+  height: 20,
   transform: "translate(0%, -50%)",
   cursor: "pointer"
   // border: "1px solid grey"
@@ -18,7 +18,7 @@ const railOuterStyle = {
 const railInnerStyle = {
   position: "absolute",
   width: "100%",
-  height: 8,
+  height: 4,
   transform: "translate(0%, -50%)",
   borderRadius: 4,
   pointerEvents: "none",
@@ -74,8 +74,8 @@ export function Handle({
           position: "absolute",
           transform: "translate(-50%, -50%)",
           zIndex: 2,
-          width: 20,
-          height: 20,
+          width: 10,
+          height: 10,
           borderRadius: "50%",
           boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.3)",
           backgroundColor: disabled ? "#666" : "#333"

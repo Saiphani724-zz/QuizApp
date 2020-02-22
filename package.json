@@ -33,6 +33,7 @@
     "nodemon": "^2.0.2",
     "rc-progress": "^2.5.2",
     "react-cookies": "^0.1.1",
+    "react-radio-group": "^3.0.3",
     "request": "^2.88.2"
   },
   "devDependencies": {

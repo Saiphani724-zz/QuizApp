@@ -11,39 +11,123 @@ MongoClient.connect(url, { useNewUrlParser: true },
 		}
 
 		const db = client.db(dbName);
+
+		db.collection('users').insertOne({"username": "saiphani724",
+		"personalInfo": {
+		    "password": "1919",
+		    "email": "saiphani724@gmail.com",
+		    "mobile": "9246465080",
+		    "rollNo": "cb.en.u4cse17137"
+		},
+		"QuizInfo": [
+			{
+				quizCode : "SE01",
+				answers: {},
+				correctAns : {},
+				marks: 0,
+				prvQuiz : false,
+			},
+			{
+				quizCode : "CD01",
+				answers: {},
+				correctAns : {},
+				marks: 0,
+				prvQuiz : false,
+			},
+			{
+				quizCode : "SE02",
+				answers: {},
+				correctAns : {},
+				marks: 3,
+				prvQuiz : true,
+			},
+			{
+				quizCode : "CD02",
+				answers: {},
+				correctAns : {},
+				marks: 2,
+				prvQuiz : true,
+			}
+		]
+		})
+
+	  db.collection('users').insertOne({"username": "sachmo",
+		"personalInfo": {
+		    "password": "sachipo",
+		    "email": "tsachmo1999@gmail.com",
+		    "mobile": "1081081080",
+		    "rollNo": "cb.en.u4cse17160"
+		},
+		"QuizInfo": [
+			{
+				quizCode : "SE01",
+				answers: {},
+				correctAns : {},
+				marks: 0,
+				prvQuiz : false,
+			},
+			{
+				quizCode : "CD01",
+				answers: {},
+				correctAns : {},
+				marks: 0,
+				prvQuiz : false,
+			},
+			{
+				quizCode : "SE02",
+				answers: {},
+				correctAns : {},
+				marks: 3,
+				prvQuiz : true,
+			},
+			{
+				quizCode : "CD02",
+				answers: {},
+				correctAns : {},
+				marks: 4,
+				prvQuiz : true,
+			}
+		]
+	  })
+
 		db.collection('quizes').insertOne({
 			quizCode : 'SE01',
 			course: 'Software Engineering',
 			topic: 'Intro to SE',
 			isAvailable : true,
 			due: '21-Feb-20 5:00 pm',
+			date : "24-Feb-20",
 			resultRelease : 'false',
-			prvQuiz : false,
 			questions : 
 			[
 			  {
 				question : 'Who typically performs Unit Testing?',
-				options : ['End user', 'QA Engineer', 'Developer', 'Scrum master'],
+				questionCode : 'SE_Q01',
+				options : [['A', 'End user'], ['B' , 'QA Engineer'], ['C' , 'Developer'], ['D' , 'Scrum master']],
 				correctAns : 'A'
 			  },
 			  {
 				question : 'What is getting evaluated today?',
-				options : ['Sprint 1 Review', 'Sprint 1 Planning', 'Sprint 0 planning', 'Sprint 0 Retrospective'],
+				questionCode : 'SE_Q02',
+				options : [['A', 'Sprint 1 Review'], ['B' , 'Sprint 1 Planning'], ['C', 'Sprint 0 planning'], ['D' , 'Sprint 0 Retrospective']],
 				correctAns : 'B'
 			  },
 			  {
 				question : 'Which of the following activity is the last activity in a sprint?',
-				options : ['Sprint review', 'Sprint planning', 'Spring retrospective', 'Standup meeting'],
+				questionCode : 'SE_Q03',
+				options : [['A', 'Sprint 1 Review'], ['B' , 'Sprint 1 Planning'], ['C', 'Sprint 0 planning'], ['D' , 'Sprint 0 Retrospective']],
 				correctAns : 'A'
 			  },
 			  {
 				question : 'Which of the following keyword(s) describes the precise outcome of a sprint?',
-				options : ['None of these', 'Fully tested product', 'Some features of the product', 'Potentially shippable product increment'],
+				questionCode : 'SE_Q04',
+				options : [['A', 'End user'], ['B' , 'QA Engineer'], ['C' , 'Developer'], ['D' , 'Scrum master']],
 				correctAns : 'D'
 			  },
 			  {
 				question : 'Who helps in removing impediments in the scrum team ',
-				options : ['Technical Manager', 'Test Engineer', 'Impediment expert', 'Scrum master'],
+				questionCode : 'SE_Q05',
+				options : [['A', 'End user'], ['B' , 'QA Engineer'], ['C' , 'Developer'], ['D' , 'Scrum master', ],['E', 'Ni Bonda']],
 				correctAns : 'D'
 			  },
 			]
@@ -57,7 +141,6 @@ MongoClient.connect(url, { useNewUrlParser: true },
 			due: '24-Feb-20 6:00 pm',
 			date : "24-Feb-20",
 			resultRelease : 'false',
-			prvQuiz : true,
 			questions : 
 			[
 			  {
@@ -92,8 +175,8 @@ MongoClient.connect(url, { useNewUrlParser: true },
 			course: 'Compiler Design',
 			isAvailable : true,
 			due: '19-Feb-20 6:00 pm',
+			date : "24-Feb-20",
 			resultRelease : 'false',
-			prvQuiz : false,
 			topic : 'Intro to CD',
 			questions : 
 			[
@@ -140,7 +223,6 @@ MongoClient.connect(url, { useNewUrlParser: true },
 			due: '27-Feb-20 4:00 pm',
 			date : "27-Feb-20",
 			resultRelease : 'false',
-			prvQuiz : true,
 			questions : 
 			[
 			  {

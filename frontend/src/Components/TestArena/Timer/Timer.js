@@ -4,7 +4,7 @@ import { Circle } from 'rc-progress';
 import './Timer.css';
 
 const time = 1000;
-const duration = 1;
+const duration = 0.2;
 const beginTimestamp =  new Date().getTime();
 var nodeValue = 0;
 
@@ -27,7 +27,8 @@ class Timer extends Component {
 		this.setState({nodeValue : nodeValue, width : width})
 		
 		if(left < 0 && left > -5){
-			window.location.href = window.location.origin + '/dashboard';
+			// window.location.href = window.location.origin + '/dashboard';
+			this.props.submitQuiz();
 			setTimeout(alert('Your Answers have been submitted'),5000);
 		}
 	}
@@ -50,8 +51,8 @@ class Timer extends Component {
 						strokeWidth="6"
 						strokeLinecap="round"
 						strokeColor={{
-							'0%': '#108ee9',
-							'100%': '#87d068',
+							'0%': '#FF8ee9',
+							'100%': '#00FF00',
 						}}
 					/>
 				</div>

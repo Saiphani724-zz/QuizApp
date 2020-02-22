@@ -31,7 +31,7 @@ class App extends Component {
 		}
 
 		return (
-			<div >
+			<div class="background">
 				{
 					this.state.isLoggedin ?
 						null :
@@ -47,7 +47,7 @@ class App extends Component {
 												<p>Don't have Account ?  <br></br>
 												</p>
 												<button id="toSignupPageButton" onClick={this.onRegisterhandler}
-												 className="btn-lg btn btn-primary">Sign Up for Quiz App</button>
+												 className="btn-lg btn btn-dark">Sign Up for Quiz App</button>
 											</div>
 										</div>
 								}
