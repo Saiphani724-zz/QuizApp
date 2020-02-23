@@ -10,7 +10,8 @@ var nodeValue = 0;
 
 class Timer extends Component {
 	state = {
-		nodeValue : 0
+		nodeValue : 0,
+		submitted : 0
 	}
 	constructor(props){
 		super(props);
@@ -26,10 +27,9 @@ class Timer extends Component {
 		var width = (left * 100 / (duration * 60));	
 		this.setState({nodeValue : nodeValue, width : width})
 		
-		if(left < 0 && left > -5){
-			// window.location.href = window.location.origin + '/dashboard';
+		if(left < 0 && !this.state.submitted){
+			this.setState({submitted : 1});
 			this.props.submitQuiz();
-			setTimeout(alert('Your Answers have been submitted'),5000);
 		}
 	}
 

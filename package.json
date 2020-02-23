@@ -10,8 +10,7 @@
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\"  ",
     "update": "git pull https://github.com/Saiphani724/QuizApp &&  mongod --dbpath=\"backend\\data\" ",
-    "createdb": "node backend/createdb.js",
-    "blast": "concurrently \"npm run update\" \"npm run createdb\" "
+    "db": "node backend/createdb.js"
   },
   "repository": {
     "type": "git",

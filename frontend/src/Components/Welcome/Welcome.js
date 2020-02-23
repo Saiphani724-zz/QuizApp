@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './Welcome.css';
 
 import cookie from 'react-cookies';
-import HomePage from '../../Components/HomePage/HomePage';
-import Signin from '../../Components/Signin/Signin';
-import Register from '../../Components/Register/Register';
+import HomePage from './HomePage/HomePage';
+import Signin from './Signin/Signin';
+import Register from './Register/Register';
 import { Card } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 

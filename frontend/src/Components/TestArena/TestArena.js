@@ -4,6 +4,8 @@ import cookie from 'react-cookies';
 
 import Question from './Question/Question';
 import Timer from './Timer/Timer';
+import 'react-notifications/lib/notifications.css';
+import sekalu from "../../static/sekalu.jpg";
 
 class TestArena extends Component {
 
@@ -44,46 +46,64 @@ class TestArena extends Component {
 		fetch(`submitQuiz?quizResult=${quizResult}`, {
 			method: 'GET',
 		}).then(res => res.json());
-
+		alert('Your Answers have been submitted successfully');
 		window.location.href = window.location.origin + '/dashboard';
+		cookie.remove('quizCode', { path: '/' });
 	}
 
 	constructor(props) {
 		super(props);
 
 		var quizCode = cookie.load('quizCode', { path: '/' })
+		if (quizCode === undefined) {
+			setTimeout(()=>{
+			window.location.href = window.location.origin + '/dashboard';
+			alert('You can\'t hack this.. Test has already been submitted');
+			},500);
+		}
+		else {
+			fetch(`getTestQuestions?quizCode=${quizCode}`, {
+				method: 'GET',
+			}).then(res => res.json())
+				.then(quiz => this.setState({ questions: quiz.questions, course: quiz.course, topic: quiz.topic }, function () {
+					// console.log(this.state.questions);
+				}))
+		}
 
-		fetch(`getTestQuestions?quizCode=${quizCode}`, {
-			method: 'GET',
-		}).then(res => res.json())
-			.then(quiz => this.setState({ questions: quiz.questions, course: quiz.course, topic: quiz.topic }, function () {
-				// console.log(this.state.questions);
-			}))
+
 	}
 	render() {
 		// console.log(this.state);
 		return (
-			<div id="pageMargin">
-				<div id="Timer">
-					<div id="header" >
-						<Timer submitQuiz={this.submitQuiz}/>
-					</div>
-					<div id="title">
-						<h2>{this.state.course}</h2>
-						<h3>{this.state.topic}</h3>
-						<div id="EndTestButton">
-							<button onClick={this.submitQuiz}
-								class="btn btn-lg btn-danger">End Test</button>
-						</div>
-					</div>
-				</div>
-
+			<div>
 				{
-					this.state.questions ?
-						this.state.questions.map(ques => {
-							return <Question question={ques} onSelectAns={this.onAnswer} />
-						})
-						: null
+					cookie.load('quizCode', { path: '/' }) != undefined ?
+						<div id="pageMargin">
+							<div id="Timer">
+								<div id="header" >
+									<Timer submitQuiz={this.submitQuiz} />
+								</div>
+								<div id="title">
+									<h2>{this.state.course}</h2>
+									<h3>{this.state.topic}</h3>
+									<div id="EndTestButton">
+										<button onClick={this.submitQuiz}
+											class="btn btn-lg btn-danger">End Test</button>
+									</div>
+								</div>
+							</div>
+
+							{
+								this.state.questions ?
+									this.state.questions.map(ques => {
+										return <Question question={ques} onSelectAns={this.onAnswer} />
+									})
+									: null
+							}
+						</div> :
+						<div>
+							<img src={sekalu} alt="Italian Trulli" id="sekalu"></img>
+						</div>
 				}
 			</div>
 		);
