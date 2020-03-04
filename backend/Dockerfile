@@ -1,11 +1,13 @@
-# FROM node:10.16.3-alpine
+FROM node:10
+# Create app directory
+WORKDIR /usr/src/app
+# Install app dependencies
+COPY package*.json ./
 
-# RUN mkdir -p /srv/app/backend
-# WORKDIR /srv/app/backend
+RUN npm install --silent
+# Copy app source code
+COPY . .
 
-# COPY . /srv/app/backend
-
-# RUN npm install
-
-
-# CMD ["node", "server.js"]
+#Expose port and start application
+EXPOSE 3000
+CMD ["npm", "start"]

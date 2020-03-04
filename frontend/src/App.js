@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Welcome from './Components/Welcome/Welcome';
-import Dashboard from './Components/StudentDashboard/Dashboard';
+import StudentDashboard from './Components/StudentDashboard/Dashboard';
+import FacultyDashboard from './Components/FacultyDashboard/Dashboard';
+import FacultyLogin from './Components/FacultyLogin/FaculyLogin';
 import TestArena from './Components/TestArena/TestArena';
 import ViewResult from './Components/ViewResult/ViewResult';
 
@@ -20,9 +22,11 @@ class App extends Component {
 			<main>
 				<Switch>
 					<Route path='/' component={Welcome} exact />
-					<Route path='/dashboard' component={Dashboard} />
+					<Route path='/dashboard' component={StudentDashboard} />
 					<Route path='/viewResult' component={ViewResult} />
 					<Route path='/testArena' component={TestArena} />
+					<Route path='/admin' component={FacultyLogin} />
+					<Route path='/facultydashboard' component={FacultyDashboard} />
 					<Route component={notdefined} />
 				</Switch>
 			</main>

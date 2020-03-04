@@ -1,0 +1,12 @@
+.bcc {
+	background-image: linear-gradient(to right, #d4a524 0%, #fa5549 100%);
+	margin-left: -50px;
+}
+
+.h0 {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 60px;
+	margin-left: auto;
+	text-align : center;
+	color: #000000;
+}
