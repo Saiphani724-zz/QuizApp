@@ -31,12 +31,14 @@ class Quiz extends Component {
 		return (
 			<Card bg={color} text={text}>
 				<Card.Body>
-					<Card.Title>{this.props.title}<Button id={this.props.id} onClick={this.handleButtonClick} className="taketest indent50pRight" variant="primary">
+					<Card.Title>{this.props.title}</Card.Title>
+					<Button id={this.props.id} onClick={this.handleButtonClick} className="taketest indent50pRight" variant="primary">
 					{
 					this.props.prvQuiz ===false ?
 						"Take Test":"View Result"
 					}
-						</Button></Card.Title>
+						</Button>
+					<div id="quizDetails">
 					{
 						this.props.prvQuiz ?
 							<Card.Text>
@@ -52,7 +54,7 @@ class Quiz extends Component {
 								<b>Due-DateTime	</b><span>:			{this.props.due}</span>
 							</Card.Text>
 					}
-
+					</div>
 				</Card.Body>
 			</Card>
 		)

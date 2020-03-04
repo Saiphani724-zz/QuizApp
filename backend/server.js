@@ -1,3 +1,4 @@
+
 const express = require('express');
 
 const app = express();
@@ -212,6 +213,31 @@ app.get('/submitQuiz', function (req, res) {
 
 
 })
+
+app.get('/getUser', function (req, res) {
+	let uname = (req.query.username);
+	MongoClient.connect(url, { useNewUrlParser: true },
+		(err, client) => {
+			if (err) {
+				console.log('Unable to connect to db');
+			}
+			
+			const db = client.db(dbName);
+			db.collection('users').findOne(
+				{
+					'username': uname.toLowerCase(),
+				}
+				, (err, user) => {
+					if (err) {
+						console.log("Error is", err);
+						return;
+					}
+					// console.log(user);
+					res.send(user);
+				})
+		});
+})
+
 
 app.listen(port, () => {
 	console.log(`Server started on port ${port}`);

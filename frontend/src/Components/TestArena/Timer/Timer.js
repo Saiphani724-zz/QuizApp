@@ -4,40 +4,38 @@ import { Circle } from 'rc-progress';
 import './Timer.css';
 
 const time = 1000;
-const duration = 0.2;
-const beginTimestamp =  new Date().getTime();
+const duration = 10;
+const beginTimestamp = new Date().getTime();
 var nodeValue = 0;
 
 class Timer extends Component {
 	state = {
-		nodeValue : 0,
-		submitted : 0
+		nodeValue: 0,
+		submitted: 0
 	}
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 		}
 	}
 
-	updateTime = ()=>{
-		
+	updateTime = () => {
 		var now = new Date().getTime();
-		var left = duration * 60 - ((now-beginTimestamp) / time);
-		nodeValue = Math.max(0,Math.floor(left / 60)) + ":" + Math.max(0,Math.floor(left % 60));
-		var width = (left * 100 / (duration * 60));	
-		this.setState({nodeValue : nodeValue, width : width})
-		
-		if(left < 0 && !this.state.submitted){
-			this.setState({submitted : 1});
+		var left = duration * 60 - ((now - beginTimestamp) / time);
+		nodeValue = Math.max(0, Math.floor(left / 60)) + ":" + Math.max(0, Math.floor(left % 60));
+		var width = (left * 100 / (duration * 60));
+		this.setState({ nodeValue: nodeValue, width: width })
+
+		if (left < 0 && !this.state.submitted) {
+			this.setState({ submitted: 1 });
 			this.props.submitQuiz();
 		}
 	}
 
 
 	render() {
-		
-		setTimeout(setInterval(this.updateTime,1000), 5000);
-		
+		setTimeout(setInterval(this.updateTime, 1000), 5000);
+
 		const circleContainerStyle = {
 			width: '150px',
 			height: '150px',
@@ -63,3 +61,4 @@ class Timer extends Component {
 
 
 export default Timer;
+

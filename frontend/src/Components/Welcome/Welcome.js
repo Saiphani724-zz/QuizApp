@@ -5,7 +5,7 @@ import cookie from 'react-cookies';
 import HomePage from './HomePage/HomePage';
 import Signin from './Signin/Signin';
 import Register from './Register/Register';
-import { Card } from 'react-bootstrap';
+// import { Card } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
 	render = () => {
 
 		var username = cookie.load('username', {path: '/'})
-		if(username != undefined){
+		if(username !== undefined){
 			window.location.href = window.location.origin + '/dashboard'
 		}
 

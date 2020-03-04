@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Question.css';
 
-import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import {RadioGroup, Radio } from 'react-radio-group';

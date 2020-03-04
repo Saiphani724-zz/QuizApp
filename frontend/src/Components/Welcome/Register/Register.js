@@ -32,7 +32,7 @@ class Register extends Component {
 
 
 	checkRegex = () => {
-		if (this.state.username != "") {
+		if (this.state.username !== "") {
 			return true
 		}
 		else {

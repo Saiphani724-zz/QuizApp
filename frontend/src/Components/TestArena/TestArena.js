@@ -26,7 +26,7 @@ class TestArena extends Component {
 			var ques = questions[i];
 			var quesCode = ques['questionCode'];
 			correctAnss[quesCode] = ques['correctAns'];
-			if (answers[quesCode] == ques['correctAns']) {
+			if (answers[quesCode] === ques['correctAns']) {
 				marks += 1;
 			}
 		}
@@ -77,15 +77,15 @@ class TestArena extends Component {
 		return (
 			<div>
 				{
-					cookie.load('quizCode', { path: '/' }) != undefined ?
+					cookie.load('quizCode', { path: '/' }) !== undefined ?
 						<div id="pageMargin">
 							<div id="Timer">
 								<div id="header" >
 									<Timer submitQuiz={this.submitQuiz} />
 								</div>
 								<div id="title">
-									<h2>{this.state.course}</h2>
-									<h3>{this.state.topic}</h3>
+									<h2 className="courseHeader">{this.state.course}</h2>
+									<h3 className="topicHeader">{this.state.topic}</h3>
 									<div id="EndTestButton">
 										<button onClick={this.submitQuiz}
 											class="btn btn-lg btn-danger">End Test</button>

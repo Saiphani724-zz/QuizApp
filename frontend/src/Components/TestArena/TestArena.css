@@ -27,3 +27,13 @@
 	height: 720px;	
 	width: 100%;
 }
+
+.courseHeader{
+	margin-top: 20px;
+	font-family: fantasy;
+}
+
+.topicHeader{
+	margin-top: 20px;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

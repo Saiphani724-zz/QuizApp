@@ -1,0 +1,28 @@
+.question {
+	margin-left: 15%;
+	margin-top: 40px;
+
+	align-content: center;
+}
+
+.green{
+	color: green;
+}
+
+.red{
+	color: red;
+}
+
+.comment{
+	margin-top: 10px;
+	margin-left: 25px;
+	margin-bottom: 10px;
+	
+}
+
+.correctTag{
+	margin-top: 10px;
+	margin-left: 25px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
