@@ -8,22 +8,45 @@ import { RadioGroup, Radio } from 'react-radio-group';
 class Question extends Component {
 
 	state = {
-
+		viewResult: false,
+		toggleButtonText : "Show Result",
+		toggleButtonClass : "success"
 	}
 
 	handleAnsChange = () => {
 
 	}
 
+	onResultToggle = ()=>{
+		if(!this.state.viewResult){
+			this.setState({
+				viewResult: true,
+				toggleButtonText : "Hide Result",
+				toggleButtonClass : "danger"
+			})
+		}
+		else{
+			this.setState({
+				viewResult: false,
+				toggleButtonText : "Show result",
+				toggleButtonClass : "success"
+			})
+		}
+	}
+
 	render() {
 		console.log(this.props);
 		return (
 			<div id={this.props.question.questionCode} className="question">
+				
 				<Card style={{ width: '80%' }}>
 					<Card.Header>
 						{this.props.question.question}
 					</Card.Header>
-					<ListGroup variant="flush">
+					{
+						this.state.viewResult ?
+						 <div>
+							 <ListGroup variant="flush">
 						<RadioGroup name={this.props.question.questionCode} selectedValue={this.state.selectedOption} onChange={this.handleAnsChange}>
 							{
 								this.props.question['options'].map(option => (
@@ -54,8 +77,25 @@ class Question extends Component {
 							</div>
 							
 						}
+						</div> :
+						<div>
+							<ListGroup variant="flush">
+						<RadioGroup name={this.props.question.questionCode} selectedValue={this.state.selectedOption} onChange={this.handleAnsChange}>
+							{
+								this.props.question['options'].map(option => (
+									<ListGroup.Item><Radio value={option[0]} checked={option[0] === this.props.answer} />
+											<span> {option[1]} </span> 
+									</ListGroup.Item>
+								))
+							}
+						</RadioGroup>
+					</ListGroup>
+						</div>
+					}
+					
 					</Card>
-				
+					<button id="toggleResult" onClick={this.onResultToggle}
+					className={"btn btn-" + this.state.toggleButtonClass}>{this.state.toggleButtonText}</button>
 
 			</div>
 		)
