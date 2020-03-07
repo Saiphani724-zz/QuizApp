@@ -5,7 +5,7 @@ import './Dashboard.css';
 // import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 
-// import SideNavBar from './SideNav/SideNav';
+import SideNavBar from './SideNav/SideNav';
 
 class Dashboard extends Component {
 	state = {
@@ -21,6 +21,7 @@ class Dashboard extends Component {
 				{
 					this.state.username != null ?
 						<div>
+							<SideNavBar></SideNavBar>
 							<div id="dashboardPage">
 								<h1 className="text-center">
 									<i className="fad fa-h1" id="welcomeMsg">
