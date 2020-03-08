@@ -28,12 +28,14 @@ class Dashboard extends Component {
 										Welcome, {this.state.username}
 									</i>
 								</h1>
+								<button className="btn btn-primary" onClick={()=>{
+									window.location.href = window.location.origin + '/createquiz'
+								}}>Create Quiz</button>
 							</div>
-
 						</div>
 						:
 						<h1 id="luvda" className="jumbotron text-center">
-							<button onClick={()=>{window.location.href = window.location.origin + '/'}} class="btn btn-lg btn-primary">Please Login <i className="far fa-heart"></i></button>
+							<button onClick={()=>{window.location.href = window.location.origin + '/admin'}} class="btn btn-lg btn-primary">Please Login <i className="far fa-heart"></i></button>
 						</h1>
 				}
 

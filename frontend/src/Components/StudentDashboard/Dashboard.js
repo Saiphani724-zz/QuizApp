@@ -25,10 +25,8 @@ class Dashboard extends Component {
 					this.state.username != null ?
 						<div>
 							<div id="dashboardPage">
-								<h1 className="text-center">
-									<i className="fad fa-h1" id="welcomeMsg">
+								<h1 className="text-center" id="welcomeMsg">
 										Welcome, {this.state.username}
-									</i>
 								</h1>
 								
 								<AvaiableQuizes />

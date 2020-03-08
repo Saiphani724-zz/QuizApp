@@ -3,7 +3,7 @@ import './TestArena.css';
 import cookie from 'react-cookies';
 
 import Question from './Question/Question';
-// import Timer from './Timer/Timer';
+import Timer from './Timer/Timer';
 import 'react-notifications/lib/notifications.css';
 import sekalu from "../../static/sekalu.jpg";
 
@@ -81,7 +81,7 @@ class TestArena extends Component {
 						<div id="pageMargin">
 							<div id="Timer">
 								<div id="header" >
-									{/* <Timer submitQuiz={this.submitQuiz} /> */}
+									<Timer submitQuiz={this.submitQuiz} />
 								</div>
 								<div id="title">
 									<h2 className="courseHeader">{this.state.course}</h2>

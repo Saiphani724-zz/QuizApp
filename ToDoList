@@ -16,11 +16,8 @@ UserDB -
 	Add quiz, answered questions
 
 QuizDB - 
-	quizCode,
 	timer,
-	explanation for question
-
-
+	
 
 Student Dashboard
 	TestArena
@@ -34,6 +31,9 @@ Student Dashboard
 .
 .
 Faculty Dashboard
+
+
+
 
 ToApp
 [Adjust all warnings and comment log statements

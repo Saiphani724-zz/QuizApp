@@ -20,6 +20,10 @@ MongoClient.connect(url, { useNewUrlParser: true },
 			if (err) throw err;
 			if (delOK) console.log("Collection deleted");
 		});
+		db.collection("faculty").drop(function (err, delOK) {
+			if (err) throw err;
+			if (delOK) console.log("Collection deleted");
+		});
 
 
 		db.collection('users').insertOne({
@@ -276,6 +280,50 @@ MongoClient.connect(url, { useNewUrlParser: true },
 					},
 
 				]
+		})
+
+		cb.collection('faculty').insertOne({
+			"username" : "ganesh",
+			"personalInfo": {
+				"password": "iyer",
+				"email": "ganeshiyer@gmail.com",
+				"mobile": "1234567890",
+			},
+			"QuizInfo": [
+				{
+					"quizCode": "SE01",
+					"scores" : [],
+					"total" : 0
+				},
+				{
+					"quizCode": "SE02",
+					"scores" : [],
+					"total" : 0
+				}
+			]
+		})
+
+		cb.collection('faculty').insertOne({
+			"username" : "ragesh",
+			"personalInfo": {
+				"password": "sadism",
+				"email": "sadistragesh@gmail.com",
+				"mobile": "0100100100",
+			},
+			"QuizInfo": [
+				{
+					"quizCode": "CD01",
+					"scores" : [],
+					"total" : 0,
+					"noOfStudents" : 2
+				},
+				{
+					"quizCode": "CD02",
+					"scores" : [],
+					"total" : 0,
+					"noOfStudents" : 2
+				}
+			]
 		})
 
 		client.close();
