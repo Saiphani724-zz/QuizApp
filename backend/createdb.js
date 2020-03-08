@@ -282,7 +282,7 @@ MongoClient.connect(url, { useNewUrlParser: true },
 				]
 		})
 
-		cb.collection('faculty').insertOne({
+		db.collection('faculty').insertOne({
 			"username" : "ganesh",
 			"personalInfo": {
 				"password": "iyer",
@@ -303,7 +303,7 @@ MongoClient.connect(url, { useNewUrlParser: true },
 			]
 		})
 
-		cb.collection('faculty').insertOne({
+		db.collection('faculty').insertOne({
 			"username" : "ragesh",
 			"personalInfo": {
 				"password": "sadism",
