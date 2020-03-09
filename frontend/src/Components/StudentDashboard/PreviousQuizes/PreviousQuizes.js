@@ -10,7 +10,8 @@ class PreviousQuizes extends Component {
 		// Don't call this.setState() here!
 		this.state = {};
 		var username = cookie.load('username');
-		fetch(`getQuizes?prvQuiz=${true}&username=${username}`, {
+		var ipaddress = cookie.load('ipaddress');
+		fetch(`http:${ipaddress}:5000/getQuizes?prvQuiz=${true}&username=${username}`, {
 			method: 'GET',
 		}).then(res => res.json())
 			.then(data => this.setState({ quizes: data }))
