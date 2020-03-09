@@ -8,7 +8,10 @@ class CreateQuiz extends Component {
 	state = {
 		username: null,
 		courseTitle: "",
+		courseCode:"",
 		quizTopic: "",
+		random_int:0,
+		due:'',
 		noOfquestions: 2,
 		questions: [
 			{
@@ -21,11 +24,30 @@ class CreateQuiz extends Component {
 
 	}
 	componentWillMount() {
-		this.setState({ username: cookie.load('username') })
+		this.setState({ username: cookie.load('username') });
+		var d = new Date();
+		
+		//console.log(d.getTime());
+		// fetch(`http://${ipaddress}:5000/login?username=${this.state.username}&&password=${this.state.password}`, {
+		// 	method: 'GET',
+		// }).then(res => res.json())
+		// 	.then(data => {
+		// 		// this.setState(
+		// 		// 	() => (data),
+		// 		// 	function () {
+		// 		// 		//this.verifyUserLogin(history);
+		// 		// 		console
+		// 		// 	}
+		// 		// )
+		// 		console.log(data);
+		// 	})
 	}
 
 	handleCourseTitleChange = (e) => {
 		this.setState({ courseTitle: e.target.value })
+	}
+	handleCourseCodeChange = (e) => {
+		this.setState({ courseCode: e.target.value })
 	}
 	handleQuizTopicChange = (e) => {
 		this.setState({ quizTopic: e.target.value })
@@ -61,6 +83,24 @@ class CreateQuiz extends Component {
 
 
 	submitQuiz = () => {
+		//quizcode,course,topic,due,date,questions
+		var d = new Date();
+		var tobesent = {'quizcode':this.state.courseCode+"_"+d.getTime(),'course':this.state.courseTitle,'topic':this.state.quizTopic,'due':this.state.due,'date':this.state.due,'questions':this.state.questions};
+
+		var username = this.state.username;
+		var ipaddress = cookie.load('ipaddress');
+		fetch(`http://${ipaddress}:5000/submitNewQuiz`,{
+			method:'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(tobesent)
+			
+		}).then(function(response) {
+			console.log(response);
+			return response;
+		}).then(function(data){
+			console.log("quiz created!");
+			alert("QUIZ CREATED WITH CODE:" + this.state.courseCode+"_"+d.getTime());
+		});
 		
 	}
 
@@ -75,13 +115,19 @@ class CreateQuiz extends Component {
 							<div className="quizHeader">
 								<div class="container">
 									<div class="row">
-										<div class="col-sm-5" >
+										<div class="col-sm-3" >
 											<ListGroup.Item><input className="form-control" placeholder="Enter Course Title" onChange={this.handleCourseTitleChange}></input></ListGroup.Item>
 										</div>
 										<div class="col-sm-1" >
 
 										</div>
-										<div class="col-sm-5" >
+										<div class="col-sm-3" >
+											<ListGroup.Item><input className="form-control" placeholder="Enter Course Code ex:CSExxx " onChange={this.handleCourseCodeChange}></input></ListGroup.Item>
+										</div>
+										<div class="col-sm-1" >
+
+										</div>
+										<div class="col-sm-3" >
 											<ListGroup.Item><input className="form-control" placeholder="Enter Quiz Topic" onChange={this.handleQuizTopicChange}></input></ListGroup.Item>
 										</div>
 									</div>

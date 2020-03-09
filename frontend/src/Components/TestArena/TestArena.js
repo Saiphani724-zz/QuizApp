@@ -63,7 +63,8 @@ class TestArena extends Component {
 			},500);
 		}
 		else {
-			fetch(`getTestQuestions?quizCode=${quizCode}`, {
+			var ipaddress = cookie.load('ipaddress');
+		fetch(`http://${ipaddress}:5000/getTestQuestions?quizCode=${quizCode}`, {
 				method: 'GET',
 			}).then(res => res.json())
 				.then(quiz => this.setState({ questions: quiz.questions, course: quiz.course, topic: quiz.topic }, function () {

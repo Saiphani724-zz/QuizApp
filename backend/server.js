@@ -1,10 +1,11 @@
 
 const express = require('express');
-
+var bodyParser = require('body-parser');
 const app = express();
 var cors = require('cors');
 const port = 5000;
-
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 const MongoClient = require('mongodb').MongoClient;
 
 const url = 'mongodb://172.28.1.4:27017';
@@ -46,6 +47,16 @@ app.get('/login', function (req, res) {
 				})
 		});
 })
+app.post('/submitNewQuiz', function(req,res){
+	console.log(req.body);
+	var questions  = req.body['questions'];
+	let  y = 0;
+	/*for(y= 0;y<questions.length;y++){
+		console.log(questions[y]);
+	}*/
+	res.sendStatus(200);
+	
+  })
 
 app.get('/register', function (req, res) {
 	reqBody = req.query
