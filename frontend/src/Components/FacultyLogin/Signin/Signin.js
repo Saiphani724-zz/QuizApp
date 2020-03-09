@@ -41,7 +41,7 @@ class Signin extends Component {
 	}
 
 	handleSignin = (history) => {
-		fetch(`login?username=${this.state.username}&&password=${this.state.password}`, {
+		fetch(`http://172.28.1.3:5000/login?username=${this.state.username}&&password=${this.state.password}`, {
 			method: 'GET',
 		}).then(res => res.json())
 			.then(data => {
