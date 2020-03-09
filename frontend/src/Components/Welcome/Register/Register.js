@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cookie from 'react-cookies';
 // import { withRouter } from 'react-router-dom'
 
 import './Register.css';

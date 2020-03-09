@@ -18,7 +18,7 @@ class ViewResult extends Component {
 			}))
 
 		var username = cookie.load('username', { path: '/' })
-		var ipaddress = cookie.load('ipaddress');
+		ipaddress = cookie.load('ipaddress');
 		fetch(`http://${ipaddress}:5000/getUser?username=${username}`, {
 			method: 'GET',
 		}).then(res => res.json())

@@ -24,7 +24,7 @@ class App extends Component {
 
 
 	render = () => {
-		cookie.save('ipaddress','127.0.0.1',{path:'/'});
+		cookie.save('ipaddress','172.28.1.3',{path:'/'});
 		var username = cookie.load('username', {path: '/'})
 		if(username !== undefined){
 			window.location.href = window.location.origin + '/dashboard'
