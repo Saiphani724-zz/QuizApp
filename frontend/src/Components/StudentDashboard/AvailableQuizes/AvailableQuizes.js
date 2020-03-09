@@ -10,7 +10,7 @@ class AvailableQuizes extends Component {
 		this.state = {};
 		var username = cookie.load('username');
 		var ipaddress = cookie.load('ipaddress');
-		fetch(`http:${ipaddress}:5000/getQuizes?prvQuiz=${false}&username=${username}`, {
+		fetch(`http://${ipaddress}:5000/getQuizes?prvQuiz=${false}&username=${username}`, {
 			method: 'GET',
 		}).then(res => res.json())
 			.then(data => this.setState({ quizes: data }))

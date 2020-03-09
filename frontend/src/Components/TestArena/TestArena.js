@@ -44,7 +44,7 @@ class TestArena extends Component {
 
 
 		var ipaddress = cookie.load('ipaddress');
-		fetch(`http:${ipaddress}:5000/submitQuiz?quizResult=${quizResult}`, {
+		fetch(`http://${ipaddress}:5000/submitQuiz?quizResult=${quizResult}`, {
 			method: 'GET',
 		}).then(res => res.json());
 		alert('Your Answers have been submitted successfully');
