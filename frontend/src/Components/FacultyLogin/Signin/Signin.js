@@ -42,7 +42,7 @@ class Signin extends Component {
 
 	handleSignin = (history) => {
 		var ipaddress = cookie.load('ipaddress');
-		fetch(`http://${ipaddress}:5000/login?username=${this.state.username}&&password=${this.state.password}`, {
+		fetch(`http://${ipaddress}:5000/facultylogin?username=${this.state.username}&&password=${this.state.password}`, {
 			method: 'GET',
 		}).then(res => res.json())
 			.then(data => {

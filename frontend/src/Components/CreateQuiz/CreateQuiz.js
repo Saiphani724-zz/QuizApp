@@ -8,10 +8,10 @@ class CreateQuiz extends Component {
 	state = {
 		username: null,
 		courseTitle: "",
-		courseCode:"",
+		courseCode: "",
 		quizTopic: "",
-		random_int:0,
-		due:'',
+		random_int: 0,
+		due: '',
 		noOfquestions: 2,
 		questions: [
 			{
@@ -25,9 +25,10 @@ class CreateQuiz extends Component {
 	}
 	componentWillMount() {
 		this.setState({ username: cookie.load('username') });
-		var d = new Date();
-		
+		// var d = new Date();
+
 		//console.log(d.getTime());
+
 		// fetch(`http://${ipaddress}:5000/login?username=${this.state.username}&&password=${this.state.password}`, {
 		// 	method: 'GET',
 		// }).then(res => res.json())
@@ -51,6 +52,10 @@ class CreateQuiz extends Component {
 	}
 	handleQuizTopicChange = (e) => {
 		this.setState({ quizTopic: e.target.value })
+	}
+
+	handleDurationChange = (e) => {
+		this.setState({ duration : e.target.value })
 	}
 
 	handleQuestionUpdate = (i, e) => {
@@ -85,23 +90,37 @@ class CreateQuiz extends Component {
 	submitQuiz = () => {
 		//quizcode,course,topic,due,date,questions
 		var d = new Date();
-		var tobesent = {'quizcode':this.state.courseCode+"_"+d.getTime(),'course':this.state.courseTitle,'topic':this.state.quizTopic,'due':this.state.due,'date':this.state.due,'questions':this.state.questions};
-
 		var username = this.state.username;
+		var questions = this.state.questions;
+		var quizcode =  this.state.courseCode + "_" + d.getTime();
+		for(var i= 0; i < questions.length;i++){
+			questions[i].questionCode = quizcode + "_Q" + i;
+		}
+		
+		var tobesent = {
+			'facultyName' : username,
+			'quizCode' : quizcode,
+			'course': this.state.courseTitle,
+			'topic': this.state.quizTopic,
+			'due': this.state.due,
+			'date': this.state.due,
+			'duration' : this.state.duration,
+			'questions': this.state.questions
+		};
+		console.log(tobesent);
+		
+
 		var ipaddress = cookie.load('ipaddress');
-		fetch(`http://${ipaddress}:5000/submitNewQuiz`,{
-			method:'POST',
-			headers: {"Content-Type": "application/json"},
+
+		fetch(`http://${ipaddress}:5000/submitNewQuiz`, {
+			method: 'POST',
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(tobesent)
-			
-		}).then(function(response) {
+		}).then(function (response) {
 			console.log(response);
 			return response;
-		}).then(function(data){
-			console.log("quiz created!");
-			alert("QUIZ CREATED WITH CODE:" + this.state.courseCode+"_"+d.getTime());
-		});
-		
+		})
+
 	}
 
 	render() {
@@ -115,22 +134,35 @@ class CreateQuiz extends Component {
 							<div className="quizHeader">
 								<div class="container">
 									<div class="row">
-										<div class="col-sm-3" >
+
+										<div class="col-sm-6" >
 											<ListGroup.Item><input className="form-control" placeholder="Enter Course Title" onChange={this.handleCourseTitleChange}></input></ListGroup.Item>
 										</div>
-										<div class="col-sm-1" >
 
-										</div>
-										<div class="col-sm-3" >
+										<div class="col-sm-6" >
 											<ListGroup.Item><input className="form-control" placeholder="Enter Course Code ex:CSExxx " onChange={this.handleCourseCodeChange}></input></ListGroup.Item>
 										</div>
+									</div>
+									<div class="row">
 										<div class="col-sm-1" >
+										</div>
+
+										<div class="col-sm-3" >
+											<ListGroup.Item><input className="form-control " placeholder="Enter Quiz duration (mins)" onChange={this.handleDurationChange}></input></ListGroup.Item>
 
 										</div>
+
+
+										<div className="col-sm-3">
+											<ListGroup.Item><input className="form-control " placeholder="Enter Due Date-time" onChange={this.dateTimeChange}></input></ListGroup.Item>
+										</div>
+
+
 										<div class="col-sm-3" >
 											<ListGroup.Item><input className="form-control" placeholder="Enter Quiz Topic" onChange={this.handleQuizTopicChange}></input></ListGroup.Item>
 										</div>
 									</div>
+
 								</div>
 
 							</div>
@@ -186,9 +218,7 @@ class CreateQuiz extends Component {
 								}}
 							>Add Question</button>
 
-							<div className="duedatetime">
-								<ListGroup.Item><input className="form-control " placeholder="Enter Due Date-time" onChange={this.dateTimeChange}></input></ListGroup.Item>
-							</div>
+
 
 							<div className="text-center">
 								<button id="submitButton" className="btn btn-dark btn-lg " onClick={this.submitQuiz}>Submit Quiz</button>

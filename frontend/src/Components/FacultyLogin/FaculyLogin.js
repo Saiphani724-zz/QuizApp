@@ -3,7 +3,7 @@ import './FacultyLogin.css';
 
 import cookie from 'react-cookies';
 import Signin from './Signin/Signin';
-import Register from '../Welcome/Register/Register';
+
 // import { Card } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
 #createQuizPage{
-	margin-left: 20%;
-	margin-right: 10%;
+	margin-left: 17%;
+	margin-right: 5%;
 }
 
 .quizHeader{
@@ -32,14 +32,14 @@
 	width: fit-content;
 }
 
-.duedatetime{
-	width: 50%;
-	margin-top: 20px;
-	margin-left: 25%;
-}
+
 
 #submitButton{
 	margin-top: 30px;
 	width: 30%;
 	margin-bottom: 50px;
+}
+
+.row{
+	margin-top: 10px;
 }

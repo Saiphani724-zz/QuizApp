@@ -24,9 +24,12 @@ class App extends Component {
 
 
 	render = () => {
-		cookie.save('ipaddress','172.28.1.3',{path:'/'});
-		var username = cookie.load('username', {path: '/'})
-		if(username !== undefined){
+		var ipaddress1 = '127.0.0.1'
+		// var ipaddress2 = '172.28.1.3'
+		cookie.save('ipaddress', ipaddress1, { path: '/' });
+
+		var username = cookie.load('username', { path: '/' })
+		if (username !== undefined) {
 			window.location.href = window.location.origin + '/dashboard'
 		}
 
@@ -47,7 +50,7 @@ class App extends Component {
 												<p>Don't have Account ?  <br></br>
 												</p>
 												<button id="toSignupPageButton" onClick={this.onRegisterhandler}
-												 className="btn-lg btn btn-dark">Sign Up for Quiz App</button>
+													className="btn-lg btn btn-dark">Sign Up for Quiz App</button>
 											</div>
 										</div>
 								}
