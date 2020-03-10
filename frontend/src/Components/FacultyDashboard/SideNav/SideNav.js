@@ -16,7 +16,7 @@ class SideNavComponent extends Component {
 	}
 
 	componentWillMount() {
-		this.setState({ username: cookie.load('username') })
+		this.setState({ username: cookie.load('facultyName') })
 	}
 
 	render()
@@ -62,7 +62,7 @@ class SideNavComponent extends Component {
 
 						
 
-						<NavItem id="navToLogout" onClick={() => { cookie.remove('username', { path: '/' }); history.push('/admin') }}>
+						<NavItem id="navToLogout" onClick={() => { cookie.remove('facultyName', { path: '/' }); history.push('/admin') }}>
 							<NavIcon >
 								<i className="fa fa-window-close" aria-hidden="true"></i>
 							</NavIcon>

@@ -24,7 +24,7 @@ class CreateQuiz extends Component {
 
 	}
 	componentWillMount() {
-		this.setState({ username: cookie.load('username') });
+		this.setState({ username: cookie.load('facultyName') });
 		// var d = new Date();
 
 		//console.log(d.getTime());
@@ -90,7 +90,7 @@ class CreateQuiz extends Component {
 	submitQuiz = () => {
 		//quizcode,course,topic,due,date,questions
 		var d = new Date();
-		var username = this.state.username;
+		var username = this.state.username.toLowerCase();
 		var questions = this.state.questions;
 		var quizcode =  this.state.courseCode + "_" + d.getTime();
 		for(var i= 0; i < questions.length;i++){
@@ -118,7 +118,7 @@ class CreateQuiz extends Component {
 			body: JSON.stringify(tobesent)
 		}).then(function (response) {
 			console.log(response);
-			return response;
+			window.location.href = window.location.origin + '/facultydashboard'
 		})
 
 	}

@@ -87,38 +87,38 @@ app.post('/submitNewQuiz', function (req, res) {
 	quizData.isAvailable = true
 	quizData.resultRelease = 'false'
 
-	
+
 	var correctAns = {}
 	var answers = {}
 	var isCorrect = {}
-	for(var i = 0;i < quizData.questions.length;i++){
+	for (var i = 0; i < quizData.questions.length; i++) {
 		// correctAns[quizData.questions[i].questionCode] = ""
 		// answers[quizData.questions[i].questionCode] = ""
 		isCorrect[quizData.questions[i].questionCode] = false
 	}
-	
+
 	var userQuizInfo = {
-		'quizCode' : quizData.quizCode,
-		'answers' : answers,
-		'correctAns' : correctAns,
+		'quizCode': quizData.quizCode,
+		'answers': answers,
+		'correctAns': correctAns,
 		'marks': 0,
-		'prvQuiz' : false
+		'prvQuiz': false
 	};
-	
-	var facultyQuizData = {
-		quizCode : quizData.quizcode,
-		scores : [{
-			username : "",
-			isCorrect : isCorrect,
-			score : 0
-		}],
-		totalMarks : quizData.questions.length,
-		noOfstudents  : 0
+
+	var facultyQuizInfo = {
+		quizCode: quizData.quizCode,
+		scores: [],
+		totalMarks: quizData.questions.length
 	}
-	
+	// {
+	// 	studentname : "",
+	// 	isCorrect : isCorrect,
+	// 	score : 0
+	// }
+
 	// console.log(facultyQuizData);
 	console.log(userQuizInfo);
-	
+
 
 	MongoClient.connect(url, { useNewUrlParser: true },
 		(err, client) => {
@@ -133,10 +133,10 @@ app.post('/submitNewQuiz', function (req, res) {
 			var myCursor = db.collection('users').find(
 				// {prvQuiz : req.query.prvQuiz == 'true'}
 			);
-			
+
 			myCursor.forEach(function (data) {
 				data.QuizInfo.push(userQuizInfo);
-				
+
 				db.collection('users').findOneAndUpdate({
 					'username': data.username
 				},
@@ -150,14 +150,30 @@ app.post('/submitNewQuiz', function (req, res) {
 					}
 				);
 			});
-			// myCursor.close();
 
+
+			var myCursor = db.collection('faculty').find(
+				{ 'username': quizData.facultyName }
+			);
+
+			myCursor.forEach(function (data) {
+
+				data.QuizInfo.push(facultyQuizInfo);
+				db.collection('faculty').findOneAndUpdate({
+					'username': data.username
+				},
+					{
+						$set: {
+							QuizInfo: data.QuizInfo
+						}
+					},
+					{
+						returnOriginal: false
+					}
+				);
+			});
 		});
-
-
-
 	res.sendStatus(200);
-
 })
 
 app.get('/register', function (req, res) {
@@ -174,7 +190,6 @@ app.get('/register', function (req, res) {
 		},
 		QuizInfo: {}
 	}
-
 
 	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
 		if (err) {
@@ -228,7 +243,7 @@ app.get('/getQuizes', function (req, res) {
 
 					for (let i = 0; i < user.QuizInfo.length; i++) {
 						var quiz = user.QuizInfo[i];
-						
+
 						if (quiz.prvQuiz === (req.query.prvQuiz === 'true')) {
 							reqQuizes[quiz['quizCode']] = quiz['marks'];
 							if ((req.query.prvQuiz != 'true'))
@@ -237,7 +252,7 @@ app.get('/getQuizes', function (req, res) {
 						else {
 							reqQuizes[quiz['quizCode']] = -2;
 						}
-					}					
+					}
 				})
 
 			var myCursor = db.collection('quizes').find(
@@ -252,12 +267,12 @@ app.get('/getQuizes', function (req, res) {
 						data.marks = reqQuizes[data['quizCode']];
 						// console.log(data.marks);
 					}
-					
+
 					data.flag = i;
 					i = (i + 1) % 2;
 					arr.push(data);
 					// console.log(data);
-					
+
 				}
 			}, function () {
 				// console.log(arr);
@@ -288,6 +303,17 @@ app.get('/getTestQuestions', function (req, res) {
 app.get('/submitQuiz', function (req, res) {
 	var data = JSON.parse(req.query.quizResult);
 	// console.log(data);
+
+	var scores = {
+		username: data.username.toLowerCase(),
+		isCorrect: data.QuizInfo.isCorrect,
+		score: data.QuizInfo.marks
+	};
+
+
+
+	var facultyName;
+
 	var quizCode = data.QuizInfo.quizCode;
 	var quizInfo = null;
 	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
@@ -295,6 +321,57 @@ app.get('/submitQuiz', function (req, res) {
 			console.log(err);
 		else {
 			const db = client.db(dbName);
+
+			db.collection('quizes').findOne(
+				{
+					'quizCode': quizCode,
+				}
+				, (err, quiz) => {
+					if (err) {
+						console.log("Error is", err);
+						return;
+					}
+
+					facultyName = quiz.facultyName;
+					console.log(facultyName);
+
+					db.collection('faculty').findOne(
+						{
+							'username': facultyName,
+						}
+						, (err, facultyData) => {
+							if (err) {
+								console.log("Error is", err);
+								return;
+							}
+							
+							for(var i = 0; i < facultyData.QuizInfo.length;i++){
+								if(facultyData.QuizInfo[i].quizCode === quizCode){
+									facultyData.QuizInfo[i].scores.push(scores);
+									console.log(facultyData.QuizInfo[i].scores);
+								}
+							}
+							// facultyData.scores.push(scores);
+							db.collection('faculty').findOneAndUpdate({
+								'username': facultyName
+							},
+								{
+									$set: {
+										QuizInfo : facultyData.QuizInfo
+									}
+								},
+								{
+									returnOriginal: false
+								}
+							);
+						})
+
+				})
+
+			console.log(facultyName);
+
+
+
 			db.collection('users').findOne({
 				'username': data.username.toLowerCase()
 			}, (err, user) => {

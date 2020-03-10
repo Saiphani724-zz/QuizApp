@@ -12,7 +12,7 @@ class Dashboard extends Component {
 		username: null
 	}
 	componentWillMount() {
-		this.setState({ username: cookie.load('username') })
+		this.setState({ username: cookie.load('facultyName') })
 	}
 
 	render() {

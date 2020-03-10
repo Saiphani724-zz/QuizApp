@@ -15,7 +15,7 @@ class App extends Component {
 
 	render = () => {
 
-		var username = cookie.load('username', { path: '/' })
+		var username = cookie.load('facultyName', { path: '/' })
 		if (username !== undefined) {
 			window.location.href = window.location.origin + '/facultydashboard'
 		}

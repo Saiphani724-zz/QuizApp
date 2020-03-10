@@ -22,9 +22,11 @@ class TestArena extends Component {
 		var questions = this.state.questions;
 		var answers = this.state.answers;
 		var correctAnss = {};
+		var isCorrect = {};
 		for (let i = 0; i < questions.length; i++) {
 			var ques = questions[i];
 			var quesCode = ques['questionCode'];
+			isCorrect[quesCode] = (answers[quesCode] === ques['correctAns']);
 			correctAnss[quesCode] = ques['correctAns'];
 			if (answers[quesCode] === ques['correctAns']) {
 				marks += 1;
@@ -35,6 +37,7 @@ class TestArena extends Component {
 			QuizInfo: {
 				quizCode: cookie.load('quizCode', { path: '/' }),
 				correctAns: correctAnss,
+				isCorrect : isCorrect,
 				answers: answers,
 				marks: marks,
 				prvQuiz: true
