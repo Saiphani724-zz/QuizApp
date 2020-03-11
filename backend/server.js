@@ -300,6 +300,49 @@ app.get('/getTestQuestions', function (req, res) {
 	});
 })
 
+app.get('/getFacultyQuizes', function (req, res) {
+	console.log(req.query.facultyName);
+
+	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+		if (err)
+			console.log(err);
+		else {
+			const db = client.db(dbName);
+			db.collection('faculty').findOne(
+				{ username: req.query.facultyName.toLowerCase() },
+				(err, data) => {
+					res.send(data);
+				}
+			);
+		}
+	});
+})
+
+app.get('/getQuizBasicDetails', function (req, res) {
+	console.log(req.query.quizCode);
+
+	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+		if (err)
+			console.log(err);
+		else {
+			const db = client.db(dbName);
+			db.collection('quizes').findOne(
+				{ quizCode: req.query.quizCode },
+				(err, data) => {
+					var response = {}
+					response.course = data.course
+					response.topic = data.topic
+					res.send(response);
+				}
+			);
+		}
+	});
+})
+
+
+
+
+
 app.get('/submitQuiz', function (req, res) {
 	var data = JSON.parse(req.query.quizResult);
 	// console.log(data);
@@ -344,9 +387,8 @@ app.get('/submitQuiz', function (req, res) {
 								console.log("Error is", err);
 								return;
 							}
-							
-							for(var i = 0; i < facultyData.QuizInfo.length;i++){
-								if(facultyData.QuizInfo[i].quizCode === quizCode){
+							for (var i = 0; i < facultyData.QuizInfo.length; i++) {
+								if (facultyData.QuizInfo[i].quizCode === quizCode) {
 									facultyData.QuizInfo[i].scores.push(scores);
 									console.log(facultyData.QuizInfo[i].scores);
 								}
@@ -357,7 +399,7 @@ app.get('/submitQuiz', function (req, res) {
 							},
 								{
 									$set: {
-										QuizInfo : facultyData.QuizInfo
+										QuizInfo: facultyData.QuizInfo
 									}
 								},
 								{
@@ -365,13 +407,8 @@ app.get('/submitQuiz', function (req, res) {
 								}
 							);
 						})
-
 				})
-
 			console.log(facultyName);
-
-
-
 			db.collection('users').findOne({
 				'username': data.username.toLowerCase()
 			}, (err, user) => {
@@ -397,14 +434,9 @@ app.get('/submitQuiz', function (req, res) {
 				);
 			})
 			// console.log(reqUser);
-
-
 			res.send({});
 		}
-
 	});
-
-
 })
 
 app.get('/getUser', function (req, res) {

@@ -1,0 +1,377 @@
+Implementation:
+    Type/Platform: Our project, Quiz App, is a web-application.
+     
+Functionalities:
+Stakeholder Faculty: 
+	Create Quiz
+	View Statistics of Quiz
+
+Stakeholder Student:
+	Take a Quiz
+	View Result
+
+    	Architecture used:  MERN stack (Mongo, Express, React, Node)
+		We use react.js for rendering the front-end.
+		We use node.js as the middlewar to handle requests from react make required queries to the database return required response back to react
+
+
+Sample Code: 
+
+	server.js (Node , Express, Mongo)
+
+		
+const express = require('express');
+var bodyParser = require('body-parser');
+const app = express();
+var cors = require('cors');
+const port = 5000;
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+const MongoClient = require('mongodb').MongoClient;
+
+var ipaddress1 = "127.0.0.1"
+var ipaddress2 = "172.28.1.4"
+const url = `mongodb://${ipaddress1}:27017`;
+dbName = 'QuizAppDB'
+
+app.use(cors());
+
+
+app.get('/login', function (req, res) {
+	let uname = (req.query.username);
+	let password = (req.query.password);
+	var userFound = false;
+	MongoClient.connect(url, { useNewUrlParser: true },
+		(err, client) => {
+			if (err) {
+				console.log('Unable to connect to db');
+			}
+			console.log('Connected correctly');
+			const db = client.db(dbName);
+			db.collection('users').findOne(
+				{
+					'username': uname.toLowerCase(),
+				}
+				, (err, user) => {
+					if (err) {
+						console.log("Error is", err);
+						return;
+					}
+					// console.log(user);
+					if (user === null);
+					else if (user.personalInfo.password === password)
+						userFound = true;
+					// console.log(userFound);
+					if (userFound)
+						res.send({ "userFound": true })
+					else
+						res.send({ "userFound": false })
+						})
+				});
+		})
+		app.listen(port, () => {
+			console.log(`Server started on port ${port}`);
+		})
+
+app.get('/getTestQuestions', function (req, res) {
+	console.log(req.query.quizCode);
+
+	MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+		if (err)
+			console.log(err);
+		else {
+			const db = client.db(dbName);
+			db.collection('quizes').findOne(
+				{ quizCode: req.query.quizCode },
+				(err, data) => {
+					res.send(data);
+				}
+			);
+		}
+	});
+})
+
+
+React (Frontend)
+
+import React, { Component } from 'react';
+import './Signin.css';
+import cookie from 'react-cookies'
+// import Input from '../UI/Input/Input';
+// import '../UI/Input/Input.css';
+// import axios from 'axios';
+import {
+	withRouter,
+	// BrowserRouter
+} from 'react-router-dom'
+import { Card } from 'react-bootstrap'
+
+class Signin extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			username: "",
+			password: ""
+		}
+	}
+	componentDidMount() {
+	}
+
+	onUsernameChanged = (e) => {
+		this.setState({ username: e.target.value })
+	}
+	onPasswordChanged = (e) => {
+		this.setState({ password: e.target.value })
+	}
+
+	verifyUserLogin = (history) => {
+		if (this.state.userFound) {
+			cookie.save('username', this.state.username, { path: '/' })
+			history.push('/dashboard')
+		}
+		else {
+			cookie.remove('username', { path: '/' })
+			console.log(this.state.userFound);
+		}
+	}
+
+	handleSignin = (history) => {
+		var ipaddress = cookie.load('ipaddress');
+		fetch(`http://${ipaddress}:5000/login?username=${this.state.username}&&password=${this.state.password}`, {
+			method: 'GET',
+		}).then(res => res.json())
+			.then(data => {
+				this.setState(
+					() => (data),
+					function () {
+						this.verifyUserLogin(history);
+					}
+				)
+			})
+	}
+
+	render() {
+		const Button = withRouter(({ history }) => (
+			<button
+				id="signinButton"
+				className="btn-lg btn btn-success indent "
+				type='submit'
+				value="Sign In"
+				onClick={() => { this.handleSignin(history) }}
+			>
+				Sign In 
+			</button>
+		))
+
+		return (
+			<div id="siginOuter">
+				<Card id="signinCard">
+					
+					<form id="inputboxes">
+						<div  className="form-group row ">
+							<label htmlFor="username" className="col-form-label">Username</label>
+							<input type="username" className="form-control" id="username" placeholder="Enter your Username" onChange={this.onUsernameChanged} />
+						</div>
+						<div className="form-group row ">
+							<label htmlFor="password" className="col-form-label">Password</label>
+							<input type="password" className="form-control" id="password" placeholder="Enter your Password" onChange={this.onPasswordChanged} />
+						</div>
+					</form>
+					{
+						this.state.userFound === false ?
+							<p id="NoUserErrorMsg">User doesn't exist or Wrong Password</p>
+							: null
+					}
+					
+					<div id="signInButtton">
+						<Button />
+					</div>
+					
+				</Card>
+			</div>
+		);
+	}
+}
+
+export default Signin;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Unit Testing:
+	Tool Used:	jasmine-node
+    
+Installation: To install the jasmine-node module, run the below command.
+		npm install jasmine-node
+
+Test cases: 
+	1) A user can only be logged in with correct credentials.
+
+	var request = require("request");
+
+
+describe("Login", function () {
+	describe("Testing with", function () {
+
+		it("Correct user details1", function (done) {
+			var username = 'Saiphani724'
+			var password = '1919'
+			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["userFound"]).toBe(true);
+				done();
+			});
+		});
+
+		it("Wrong user details1", function (done) {
+			var username = 'Saiphani724'
+			var password = '1234'
+			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["userFound"]).toBe(true);
+				done();
+			});
+		});
+
+		it("Correct user details2", function (done) {
+			var username = 'Sachipo'
+			var password = 'sachmo'
+			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["userFound"]).toBe(true);
+				done();
+			});
+		});
+
+
+		it("Wrong user details2", function (done) {
+			var username = 'Sachmo'
+			var password = 'sachipo'
+			var base_url = `http://localhost:5000/login?username=${username}&&password=${password}`
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["userFound"]).toBe(true);
+				done();
+			});
+		});
+
+
+	});
+});
+
+	2) 	User can't register with an existing username.
+
+// var app = require("../spec/jasmine_examples/jasmine_test1");
+
+var request = require("request");
+
+
+describe("Sign Up", function () {
+	describe("Testing", function () {
+
+		it("Register with existing user", function (done) {
+			var username = 'PSP123'
+			var mobile = "924646080"
+			var password = "1919"
+			var email = "saiphani7890@gmail.com"
+			var rollNo = "cb.en.u4cse17137"
+			var base_url = `http://localhost:5000/register?username=${username}&&password=${password}&&email=${email}&&rollNo=${rollNo}&&mobile=${mobile}`
+
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["isRegisterSuccess"]).toBe(true);
+				done();
+			});
+		});
+
+		it("Register with new user", function (done) {
+			var d = new Date();
+			var username = 'Saiphani1234' + d.getTime();
+			var mobile = "924646080"
+			var password = "1919"
+			var email = "saiphani456@gmail.com"
+			var rollNo = "cb.en.u4cse17137"
+			var base_url = `http://localhost:5000/register?username=${username}&&password=${password}&&email=${email}&&rollNo=${rollNo}&&mobile=${mobile}`
+
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["isRegisterSuccess"]).toBe(true);
+				done();
+			});
+		});
+
+
+		it("Register with existing user", function (done) {
+			var username = 'Saiphani724'
+			var mobile = "924646080"
+			var password = "1919"
+			var email = "saiphani123@gmail.com"
+			var rollNo = "cb.en.u4cse17137"
+			var base_url = `http://localhost:5000/register?username=${username}&&password=${password}&&email=${email}&&rollNo=${rollNo}&&mobile=${mobile}`
+
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["isRegisterSuccess"]).toBe(true);
+				done();
+			});
+		});
+
+		it("Register with new user", function (done) {
+			var d = new Date();
+			var username = 'Saiphani' + d.getTime();
+			var mobile = "924646080"
+			var password = "1919"
+			var email = "saiphani727@gmail.com"
+			var rollNo = "cb.en.u4cse17137"
+			var base_url = `http://localhost:5000/register?username=${username}&&password=${password}&&email=${email}&&rollNo=${rollNo}&&mobile=${mobile}`
+
+			console.log(base_url);
+
+			request.get(base_url, function (error, response, body) {
+				expect(JSON.parse(response.body)["isRegisterSuccess"]).toBe(true);
+				done();
+			});
+		});
+
+
+	});
+});
+
+
