@@ -14,10 +14,15 @@ pipeline {
                 }
                 stage('Test') {
                     steps {
+                        sh 'cd SE_SAMPLE_TESTS'
+                        sh 'npm run test'
 
                     }
                 }
                 stage('Deploy')
+                steps {
+                    
+                }
 
 
             }
