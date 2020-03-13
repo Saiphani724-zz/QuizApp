@@ -5,6 +5,7 @@ pipeline {
                 steps {
                     echo 'Starting Build'
                     checkout scm
+                    sh 'npm install -y'
                     sh 'docker-compose build'
                     sh 'docker-compose up'
                     echo 'BUILT THE CONTAINERS!!'
@@ -14,9 +15,9 @@ pipeline {
                 }
                 stage('Test') {
                     steps {
-                        sh 'cd SE_SAMPLE_TESTS'
+                        sh 'cd UnitTesting'
                         sh 'npm install -y'
-                        sh 'npm run test'
+                        sh 'jasmine'
 
                     }
                 }
