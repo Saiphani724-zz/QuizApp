@@ -4,6 +4,7 @@ pipeline {
     stages{
         stage('Checkout'){
             steps {
+                    sh 'rm -rf QuizApp'
                     echo 'Starting Build'
                     sh 'git clone https://github.com/Saiphani724/QuizApp.git'
                     sh 'cd QuizApp'
