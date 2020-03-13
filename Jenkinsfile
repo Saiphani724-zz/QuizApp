@@ -1,10 +1,11 @@
-pipeline {
-    agent any {
-        stages {
-            stage('Build') {
-                steps {
+node('node') {
+    currentBuild.result = "SUCCESS"
+    try {
+        stage('Checkout'){
+            steps {
                     echo 'Starting Build'
                     checkout scm
+                    sh 'npm install -y'
                     sh 'docker-compose build'
                     sh 'docker-compose up'
                     echo 'BUILT THE CONTAINERS!!'
@@ -12,20 +13,27 @@ pipeline {
 
 
                 }
-                stage('Test') {
-                    steps {
-                        sh 'cd SE_SAMPLE_TESTS'
-                        sh 'npm run test'
+        }
+        stage('Test') {
+             steps {
+                        sh 'npm install -y'
+                        sh 'jasmine'
 
                     }
-                }
-                stage('Deploy')
-                steps {
-                    
-                }
 
-
+        }
+        stage('deploy'){
+            steps {
+            echo "Environment will be: test"
             }
+
         }
     }
-}
+    catch (err) {
+        currentBuild.result = "FAILURE"
+
+    }
+    
+ }
+
+
