@@ -9,8 +9,8 @@ pipeline {
                     sh 'git clone https://github.com/Saiphani724/QuizApp.git'
                     sh 'cd QuizApp'
                     sh 'npm install -y'
-                    sh 'docker-compose build'
-                    sh 'docker-compose up'
+                    sh 'sudo docker-compose build'
+                    sh 'sudo docker-compose up'
                     echo 'BUILT THE CONTAINERS!!'
                 
 
