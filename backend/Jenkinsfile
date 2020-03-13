@@ -1,8 +1,8 @@
-pipeline {
-    agent any {
-        stages {
-            stage('Build') {
-                steps {
+node('node') {
+    currentBuild.result = "SUCCESS"
+    try {
+        stage('Checkout'){
+            steps {
                     echo 'Starting Build'
                     checkout scm
                     sh 'npm install -y'
@@ -13,21 +13,27 @@ pipeline {
 
 
                 }
-                stage('Test') {
-                    steps {
-                        sh 'cd UnitTesting'
+        }
+        stage('Test') {
+             steps {
                         sh 'npm install -y'
                         sh 'jasmine'
 
                     }
-                }
-                stage('Deploy')
-                steps {
 
-                }
-
-
+        }
+        stage('deploy'){
+            steps {
+            echo "Environment will be: test"
             }
+
         }
     }
-}
+    catch (err) {
+        currentBuild.result = "FAILURE"
+
+    }
+    
+ }
+
+

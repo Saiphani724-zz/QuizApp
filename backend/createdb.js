@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const url = 'mongodb://127.0.0.1:27017';
+const url = 'mongodb://172.28.1.4:27017';
 
 dbName = 'QuizAppDB'
 
