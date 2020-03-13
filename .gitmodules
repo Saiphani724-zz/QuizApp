@@ -1,0 +1,3 @@
+[submodule "SE_SAMPLE_TESTS"]
+	path = SE_SAMPLE_TESTS
+	url = https://github.com/sachmo99/SE_SAMPLE_TESTS.git

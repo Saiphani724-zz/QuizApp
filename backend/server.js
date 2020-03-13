@@ -10,7 +10,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 var ipaddress1 = "127.0.0.1"
 var ipaddress2 = "172.28.1.4"
-const url = `mongodb://${ipaddress1}:27017`;
+const url = `mongodb://${ipaddress2}:27017`;
 dbName = 'QuizAppDB'
 
 app.use(cors());
