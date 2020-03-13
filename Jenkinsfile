@@ -1,6 +1,7 @@
-node('node') {
-    currentBuild.result = "SUCCESS"
-    try {
+pipeline {
+    agent any
+    
+    stages{
         stage('Checkout'){
             steps {
                     echo 'Starting Build'
@@ -28,10 +29,6 @@ node('node') {
             }
 
         }
-    }
-    catch (err) {
-        currentBuild.result = "FAILURE"
-
     }
     
  }
