@@ -1,10 +1,14 @@
 pipeline {
-    agent any {
-        stages {
-            stage('Build') {
-                steps {
+    agent any
+    
+    stages{
+        stage('Checkout'){
+            steps {
+                    sh 'rm -rf QuizApp'
                     echo 'Starting Build'
-                    checkout scm
+                    sh 'git clone https://github.com/Saiphani724/QuizApp.git'
+                    sh 'cd QuizApp'
+                    sh 'npm install -y'
                     sh 'docker-compose build'
                     sh 'docker-compose up'
                     echo 'BUILT THE CONTAINERS!!'
@@ -12,20 +16,29 @@ pipeline {
 
 
                 }
-                stage('Test') {
-                    steps {
-                        sh 'cd SE_SAMPLE_TESTS'
-                        sh 'npm run test'
+        }
+        stage('Test') {
+             steps {
+                        sh 'npm install -y'
+                        sh 'jasmine'
 
                     }
-                }
-                stage('Deploy')
-                steps {
-                    
-                }
 
-
+        }
+        stage('deploy'){
+            steps {
+            echo "Environment will be: test"
             }
+
+        }
+        
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
-}
+    
+ }
+
+
