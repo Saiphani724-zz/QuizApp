@@ -5,9 +5,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install 
+
 # Copy app source code
 COPY . .
 
-#Expose port and start application
+#Expose port and start application`
 EXPOSE 5000
 CMD [ "npm", "start" ]

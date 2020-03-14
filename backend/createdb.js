@@ -1,6 +1,9 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const url = 'mongodb://172.28.1.4:27017';
+var ipaddress1 = '127.0.0.1'
+var ipaddress2 = '192.168.99.100'
+var ipaddress3 = '172.28.1.4'
+const url = `mongodb://${ipaddress1}:27017`;
 
 dbName = 'QuizAppDB'
 

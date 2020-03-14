@@ -25,9 +25,9 @@ class App extends Component {
 
 	render = () => {
 		var ipaddress1 = '127.0.0.1'
-		var ipaddress2 = '172.28.1.3'
+		var ipaddress2 = '192.168.99.100'
+		var ipaddress3 = '172.28.1.3'
 		cookie.save('ipaddress', ipaddress2, { path: '/' });
-
 		var username = cookie.load('username', { path: '/' })
 		if (username !== undefined) {
 			window.location.href = window.location.origin + '/dashboard'
