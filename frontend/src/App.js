@@ -5,7 +5,9 @@ import FacultyDashboard from './Components/FacultyDashboard/Dashboard';
 import FacultyLogin from './Components/FacultyLogin/FaculyLogin';
 import TestArena from './Components/TestArena/TestArena';
 import ViewResult from './Components/ViewResult/ViewResult';
+import ViewStatistics from './Components/viewStatistics/viewStatistics';
 import CreateQuiz from './Components/CreateQuiz/CreateQuiz';
+
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -29,6 +31,7 @@ class App extends Component {
 					<Route path='/admin' component={FacultyLogin} />
 					<Route path='/facultydashboard' component={FacultyDashboard} />
 					<Route path='/createquiz' component={CreateQuiz} />
+					<Route path='/viewStatistics' Component={ViewStatistics}/>
 					<Route component={notdefined} />
 				</Switch>
 			</main>
