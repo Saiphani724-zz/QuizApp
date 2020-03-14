@@ -1,23 +1,5 @@
-version: '2'
+version: '3'
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - '3000:3000'
-    networks:
-            testing_net:
-                    ipv4_address: 172.28.1.2
-    depends_on:
-      - backend
-  backend:
-    build: ./backend
-    ports:
-      - '5000:5000'
-    networks:
-            testing_net:
-                    ipv4_address: 172.28.1.3
-    depends_on:
-      - mongo
   mongo:
     image: mongo
     ports:
@@ -26,6 +8,30 @@ services:
             testing_net:
                     ipv4_address: 172.28.1.4
 
+  frontend:
+    build: ./frontend
+    
+    
+    ports:
+      - '3000:3000'
+    networks:
+            testing_net:
+                    ipv4_address: 172.28.1.2
+    depends_on:
+      - backend
+  backend:
+    
+    
+    restart: on-failure
+    build: ./backend
+    ports:
+      - '5000:5000'
+    networks:
+            testing_net:
+                    ipv4_address: 172.28.1.3
+    depends_on:
+      - mongo
+  
 networks:
         testing_net:
                 ipam:
