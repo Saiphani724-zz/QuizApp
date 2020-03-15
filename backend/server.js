@@ -11,7 +11,14 @@ const MongoClient = require('mongodb').MongoClient;
 var ipaddress1 = "127.0.0.1"
 var ipaddress2 = "192.168.99.100"
 var ipaddress3 = "172.28.1.4"
-const url = `mongodb://${ipaddress3}:27017`;dbName = 'QuizAppDB'
+var env = process.env.NODE_ENV || 'development';
+var config = require('./mongo')['env'];
+var envUrl = process.env[config.use_env_variable];
+var localUrl = `mongodb://${ config.host }/${ config.database }`;
+const devurl = `mongodb://${ipaddress3}:27017`;dbName = 'QuizAppDB';
+var url = envUrl ? envUrl : localUrl;
+
+
 
 app.use(cors());
 

@@ -1,0 +1,13 @@
+{
+    "development": {
+        "database": "QuizAppDB",
+        "host": "localhost"
+    },
+    "test": {
+        "database":"QuizAppDB",
+        "host":"localhost"
+    },
+    "production":{
+        "use_env_variable":"MONGODB_URI"
+    }
+}

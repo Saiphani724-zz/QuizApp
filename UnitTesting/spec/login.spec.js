@@ -1,5 +1,6 @@
 var request = require("request");
-var ipaddress = "172.28.1.3"
+var ipaddress2 = "172.28.1.3"
+var ipaddress = "localhost"
 
 describe("Login", function () {
 	describe("Testing with", function () {
