@@ -15,8 +15,8 @@ var env = process.env.NODE_ENV || 'development';
 var config = require('./mongo')['env'];
 var envUrl = process.env[config.use_env_variable];
 var localUrl = `mongodb://${ config.host }/${ config.database }`;
-const devurl = `mongodb://${ipaddress3}:27017`;dbName = 'QuizAppDB';
-var url = envUrl ? envUrl : localUrl;
+const devurl = `mongodb://${ipaddress1}:27017`;dbName = 'QuizAppDB';
+var url = envUrl ? envUrl : devUrl;
 
 
 
